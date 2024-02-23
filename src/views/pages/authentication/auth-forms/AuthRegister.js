@@ -26,7 +26,7 @@ import {
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-
+import { Select, MenuItem } from '@mui/material';
 // project imports
 import useScriptRef from 'hooks/useScriptRef';
 // import Google from 'assets/images/icons/social-google.svg';
@@ -43,8 +43,8 @@ import { setUser } from 'store/actions';
 
 const Register = ({ ...others }) => {
   const dispatch = useDispatch(); // const { register } = useDispatch();
-  const user = useSelector((state) => state?.user);
-  console.log(user, 'user');
+  const user = useSelector((state) => state?.user.user);
+  // console.log(user, 'user');
   const navigate = useNavigate();
   const [userRole, setUserRole] = useState('');
   const theme = useTheme();
@@ -108,11 +108,11 @@ const Register = ({ ...others }) => {
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
             values.userRole = userRole;
-            console.log(values, 'values');
+            localStorage.setItem('user', JSON.stringify(values));
             dispatch(setUser(values));
             if (user?.userRole === 'teacher') {
               navigate('/dashboard/teacher');
-            } else {
+            } else if (user?.userRole === 'student') {
               navigate('/');
             }
             if (scriptedRef.current) {
@@ -258,10 +258,35 @@ const Register = ({ ...others }) => {
                 label={<Typography sx={{ color: 'black' }}>Parent</Typography>}
               />
             </RadioGroup>
-            {touched.userRole && errors.userRole && (
-              <FormHelperText error id="standard-weight-helper-text--user-role">
-                {errors.userRole}
-              </FormHelperText>
+
+            {userRole === 'parent' && (
+              <FormControl fullWidth error={Boolean(touched.grade && errors.grade)} sx={{ ...theme.typography.customInput }}>
+                <InputLabel htmlFor="outlined-adornment-grade">Grade</InputLabel>
+                <Select id="outlined-adornment-grade" 
+                value={values.grade} 
+                MenuProps={{
+                  PaperProps: {
+                    style: {
+                      background: 'linear-gradient(269.64deg, #7000FF 0%, #7000FF 0.01%, #A658F5 99.15%)',
+                    
+                    }
+                  }
+                }}
+                sx={{ ...theme.typography.customInput }}
+                onChange={handleChange} 
+                onBlur={handleBlur} label="Grade">
+                  <MenuItem value="">Select Grade</MenuItem>
+                  <MenuItem value="grade1">Grade 1</MenuItem>
+                  <MenuItem value="grade2">Grade 2</MenuItem>
+                  <MenuItem value="grade3">Grade 3</MenuItem>
+                  {/* Add more grades as needed */}
+                </Select>
+                {touched.grade && errors.grade && (
+                  <FormHelperText error id="standard-weight-helper-text--grade">
+                    {errors.grade}
+                  </FormHelperText>
+                )}
+              </FormControl>
             )}
 
             <Grid container alignItems="center" justifyContent="space-between">

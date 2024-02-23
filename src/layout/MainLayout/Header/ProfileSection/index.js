@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -38,6 +38,7 @@ import User1 from 'assets/images/users/user-round.svg';
 
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons-react';
+import { clearUser } from 'store/actions';
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -54,9 +55,13 @@ const ProfileSection = () => {
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
    * */
+  const dispatch = useDispatch();
   const anchorRef = useRef(null);
   const handleLogout = async () => {
     console.log('Logout');
+    dispatch(clearUser())
+    localStorage.clear();
+    navigate('/auth/login', { replace: true });
   };
 
   const handleClose = (event) => {
@@ -151,7 +156,7 @@ const ProfileSection = () => {
       >
         {({ TransitionProps }) => (
           <Transitions in={open} {...TransitionProps}>
-            <Paper>
+            <Paper style={{color: "black"}}>
               <ClickAwayListener onClickAway={handleClose}>
                 <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
                   <Box sx={{ p: 2 }}>
@@ -275,7 +280,7 @@ const ProfileSection = () => {
                                     size="small"
                                     sx={{
                                       bgcolor: theme.palette.warning.dark,
-                                      color: theme.palette.background.default
+                                      color: "black"
                                     }}
                                   />
                                 </Grid>
@@ -291,7 +296,7 @@ const ProfileSection = () => {
                           <ListItemIcon>
                             <IconLogout stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
-                          <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
+                          <ListItemText primary={<Typography variant="body2" style={{color: "black"}}>Logout</Typography>} />
                         </ListItemButton>
                       </List>
                     </Box>

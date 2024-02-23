@@ -58,6 +58,8 @@ const FirebaseLogin = ({ ...others }) => {
     event.preventDefault();
   };
 
+ 
+
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>

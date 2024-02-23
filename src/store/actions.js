@@ -16,3 +16,8 @@ export const setUser = (userData) => ({
   type: SET_USER,
   user: userData
 });
+
+export const clearUser = () => ({
+  type: CLEAR_USER,
+  user: null
+})

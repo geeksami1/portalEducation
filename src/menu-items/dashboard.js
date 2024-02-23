@@ -1,14 +1,14 @@
 // assets
-import { IconDashboard } from '@tabler/icons-react';
+import { IconDashboard, IconSettings, IconBook, IconFileText } from '@tabler/icons-react';
 
 // constant
-const icons = { IconDashboard };
+const icons = { IconDashboard, IconSettings, IconBook, IconFileText };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
 const dashboard = {
   id: 'dashboard',
-  title: 'Dashboard',
+  // title: <span style={{ color: 'white' }}>Student</span>,
   type: 'group',
   children: [
     {
@@ -20,13 +20,29 @@ const dashboard = {
       breadcrumbs: false
     },
     {
-      id: 'teacher',
-      title: 'Dashboard',
+      id: 'subject',
+      title: 'Subjects',
       type: 'item',
-      url: '/dashboard/teacher',
-      icon: icons.IconDashboard,
+      url: '/dashboard/subject',
+      icon: icons.IconBook, 
       breadcrumbs: false
-    }
+    },
+    {
+      id: 'result',
+      title: 'Results',
+      type: 'item',
+      url: '/dashboard/result',
+      icon: icons.IconFileText,
+      breadcrumbs: false
+    },
+    {
+      id: 'setting',
+      title: 'Settings',
+      type: 'item',
+      url: '/dashboard/setting',
+      icon: icons.IconSettings, 
+      breadcrumbs: false
+    },
   ]
 };
 
