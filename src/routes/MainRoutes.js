@@ -5,6 +5,8 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 import TeacherDashboard from 'views/dashboard/Teacher';
 import Subject from 'views/dashboard/Default/Subject';
+import Result from 'views/dashboard/Default/Result';
+import Settings from 'views/dashboard/Default/Settings';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -60,6 +62,24 @@ const MainRoutes = {
         {
           path: 'subject',
           element: <Subject />
+        }
+      ]
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'result',
+          element: <Result />
+        }
+      ]
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'setting',
+          element: <Settings />
         }
       ]
     },
