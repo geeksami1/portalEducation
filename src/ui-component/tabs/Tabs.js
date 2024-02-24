@@ -44,21 +44,23 @@ export default function VerticalTabs() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: "100vh" }}>
+    // <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: "100vh" }}>
+    <Box sx={{ flexGrow: 1, display: 'flex', height: '120vh' }}>
       <Tabs
         orientation="vertical"
         variant="scrollable"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 2, borderColor: 'divider', padding: "8px" }}
+        // sx={{ borderRight: 2, borderColor: 'divider', padding: '8px', paddingTop: '40px' }}
+        sx={{ borderRight: 2, borderColor: 'divider', paddingTop: '40px' }}
       >
-        <Tab label="Personal Information" {...a11yProps(0)} />
-        <Tab label="Password" {...a11yProps(1)} />
-        <Tab label="Email" {...a11yProps(2)} />
-        <Tab label="Notification" {...a11yProps(3)} />
+        <Tab  label="Personal Information" {...a11yProps(0)} />
+        <Tab  label="Change Password" {...a11yProps(1)} />
+        <Tab  label="Email Settings" {...a11yProps(2)} />
+        <Tab label="Notification Settings"  {...a11yProps(3)} />
       </Tabs>
-      <TabPanel value={value} index={0} >
+      <TabPanel value={value} index={0}>
         <PersonalInformation />
       </TabPanel>
       <TabPanel value={value} index={1}>
