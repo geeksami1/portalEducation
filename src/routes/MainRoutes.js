@@ -7,6 +7,8 @@ import TeacherDashboard from 'views/dashboard/Teacher';
 import Subject from 'views/dashboard/Default/Subject';
 import Result from 'views/dashboard/Default/Result';
 import Settings from 'views/dashboard/Default/Settings';
+import Topics from 'views/dashboard/Default/Topics';
+import Lesson from 'views/dashboard/Default/Lesson';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -19,7 +21,7 @@ const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')))
 // const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
 
 // sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+// const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -62,6 +64,24 @@ const MainRoutes = {
         {
           path: 'subject',
           element: <Subject />
+        }
+      ]
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'topic',
+          element: <Topics />
+        }
+      ]
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'lesson',
+          element: <Lesson />
         }
       ]
     },
@@ -128,10 +148,10 @@ const MainRoutes = {
     //     }
     //   ]
     // },
-    {
-      path: 'sample-page',
-      element: <SamplePage />
-    }
+    // {
+    //   path: 'sample-page',
+    //   element: <SamplePage />
+    // }
   ]
 };
 
