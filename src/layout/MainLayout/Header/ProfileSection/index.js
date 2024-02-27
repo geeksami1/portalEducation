@@ -8,22 +8,22 @@ import { useTheme } from '@mui/material/styles';
 import {
   Avatar,
   Box,
-  Card,
-  CardContent,
+  // Card,
+  // CardContent,
   Chip,
   ClickAwayListener,
   Divider,
   Grid,
-  InputAdornment,
+  // InputAdornment,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  OutlinedInput,
+  // OutlinedInput,
   Paper,
   Popper,
   Stack,
-  Switch,
+  // Switch,
   Typography
 } from '@mui/material';
 
@@ -33,11 +33,12 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import UpgradePlanCard from './UpgradePlanCard';
+// import UpgradePlanCard from './UpgradePlanCard';
 import User1 from 'assets/images/users/user-round.svg';
 
 // assets
-import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons-react';
+import { IconLogout,  IconSettings, IconUser } from '@tabler/icons-react';
+// import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons-react';
 import { clearUser } from 'store/actions';
 
 // ==============================|| PROFILE MENU ||============================== //
@@ -47,9 +48,9 @@ const ProfileSection = () => {
   const customization = useSelector((state) => state.customization);
   const navigate = useNavigate();
 
-  const [sdm, setSdm] = useState(true);
-  const [value, setValue] = useState('');
-  const [notification, setNotification] = useState(false);
+  // const [sdm, setSdm] = useState(true);
+  // const [value, setValue] = useState('');
+  // const [notification, setNotification] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
   /**
@@ -162,14 +163,14 @@ const ProfileSection = () => {
                   <Box sx={{ p: 2 }}>
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
-                        <Typography variant="h4">Good Morning,</Typography>
+                        <Typography variant="h4">Welcome,</Typography>
                         <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                          Johne Doe
+                          Alex
                         </Typography>
                       </Stack>
-                      <Typography variant="subtitle2">Project Admin</Typography>
+                      <Typography variant="subtitle2">Student Dashboard</Typography>
                     </Stack>
-                    <OutlinedInput
+                    {/* <OutlinedInput
                       sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
                       id="input-search-profile"
                       value={value}
@@ -184,14 +185,14 @@ const ProfileSection = () => {
                       inputProps={{
                         'aria-label': 'weight'
                       }}
-                    />
+                    /> */}
                     <Divider />
                   </Box>
                   <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
                     <Box sx={{ p: 2 }}>
-                      <UpgradePlanCard />
-                      <Divider />
-                      <Card
+                      {/* <UpgradePlanCard /> */}
+                      {/* <Divider /> */}
+                      {/* <Card
                         sx={{
                           bgcolor: theme.palette.primary.light,
                           my: 2
@@ -233,7 +234,7 @@ const ProfileSection = () => {
                           </Grid>
                         </CardContent>
                       </Card>
-                      <Divider />
+                      <Divider /> */}
                       <List
                         component="nav"
                         sx={{
@@ -256,9 +257,9 @@ const ProfileSection = () => {
                           onClick={(event) => handleListItemClick(event, 0, '#')}
                         >
                           <ListItemIcon>
-                            <IconSettings stroke={1.5} size="1.3rem" />
+                            <IconSettings stroke={1.5} size="1.3rem" color={theme.palette.primary.main} />
                           </ListItemIcon>
-                          <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
+                          <ListItemText primary={<Typography variant="body2" style={{color: "black"}}>Account Settings</Typography>} />
                         </ListItemButton>
                         <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
@@ -266,13 +267,13 @@ const ProfileSection = () => {
                           onClick={(event) => handleListItemClick(event, 1, '#')}
                         >
                           <ListItemIcon>
-                            <IconUser stroke={1.5} size="1.3rem" />
+                            <IconUser stroke={1.5} size="1.3rem" color={theme.palette.primary.main} />
                           </ListItemIcon>
                           <ListItemText
                             primary={
                               <Grid container spacing={1} justifyContent="space-between">
                                 <Grid item>
-                                  <Typography variant="body2">Social Profile</Typography>
+                                  <Typography variant="body2" style={{color: "black"}}>Social Profile</Typography>
                                 </Grid>
                                 <Grid item>
                                   <Chip
@@ -294,7 +295,7 @@ const ProfileSection = () => {
                           onClick={handleLogout}
                         >
                           <ListItemIcon>
-                            <IconLogout stroke={1.5} size="1.3rem" />
+                            <IconLogout stroke={1.5} size="1.3rem"  color={theme.palette.primary.main}/>
                           </ListItemIcon>
                           <ListItemText primary={<Typography variant="body2" style={{color: "black"}}>Logout</Typography>} />
                         </ListItemButton>

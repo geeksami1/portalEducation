@@ -1,9 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LessonCards = ({ img, title, bgColor }) => {
   return (
-   
+   <Link to={`/dashboard/chapter`} style={{ textDecoration: 'none' }}>
       <Box
         style={{ backgroundColor: bgColor, width: '100%', height: '100%' }}
         sx={{
@@ -23,6 +24,8 @@ const LessonCards = ({ img, title, bgColor }) => {
           {title}
         </Typography>
       </Box>
+
+   </Link>
   );
 };
 

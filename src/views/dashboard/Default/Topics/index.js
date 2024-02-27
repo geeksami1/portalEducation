@@ -29,7 +29,7 @@ const data = [
     practice: 20,
     quiz: 8,
     status: 'Not Started',
-    backgroundColor: '#fff8dc',
+    backgroundColor: '#90EE90',
     icon: img1
   }
 ];

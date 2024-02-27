@@ -56,17 +56,17 @@ const Dashboard = () => {
                 </Box>
               </Box>
               <Grid container spacing={2}>
-                <Grid item xs={3}>
+                <Grid item xs={6} md={3} lg={3}>
                   <SubjectBox img={subject1} title="Physics" bgColor="#7A3FF7" />
                 </Grid>
 
-                <Grid item xs={3}>
+                <Grid item xs={6}  md={3} lg={3}>
                   <SubjectBox img={subject2} title="Chemistry" bgColor="#56CD78" />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={6}  md={3} lg={3}>
                   <SubjectBox img={subject3} title="English" bgColor="#D54041" />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={6}  md={3} lg={3}>
                   <SubjectBox img={subject4} title="Biology" bgColor="#25C4E1" />
                 </Grid>
               </Grid>
