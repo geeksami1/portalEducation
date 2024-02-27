@@ -124,7 +124,7 @@ const Customization = () => {
         open={open}
         PaperProps={{
           sx: {
-            width: 280
+            width: 280,
           }
         }}
       >
