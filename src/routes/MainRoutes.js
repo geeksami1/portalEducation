@@ -10,6 +10,7 @@ import Settings from 'views/dashboard/Default/Settings';
 import Topics from 'views/dashboard/Default/Topics';
 import Lesson from 'views/dashboard/Default/Lesson';
 import Chapter from 'views/dashboard/Default/Chapter';
+import Course from 'views/dashboard/Teacher/Courses';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -115,6 +116,15 @@ const MainRoutes = {
         {
           path: 'setting',
           element: <Settings />
+        }
+      ]
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'course',
+          element: <Course />
         }
       ]
     }
