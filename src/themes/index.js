@@ -29,6 +29,7 @@ export const theme = (customization) => {
     menuSelectedBack: color.secondaryLight,
     divider: color.grey200,
     customization
+    
   };
 
   const themeOptions = {

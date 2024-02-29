@@ -10,14 +10,16 @@ import { gridSpacing } from 'store/constant';
 // import TotalOrderLineChartCard from '../Default/TotalOrderLineChartCard';
 import TotalIncomeDarkCard from '../Default/TotalIncomeDarkCard';
 import TotalIncomeLightCard from '../Default/TotalIncomeLightCard';
-import TotalGrowthBarChart from '../Default/TotalGrowthBarChart';
-import PopularCard from '../Default/PopularCard';
+// import TotalGrowthBarChart from '../Default/TotalGrowthBarChart';
 import TeachingData from 'ui-component/cards/Teaching/TeachingData';
 import img1 from '../../../assets/images/teacher1.png';
 import img2 from '../../../assets/images/teacher3.png';
 import img3 from '../../../assets/images/teacher2.png';
 import img4 from '../../../assets/images/teacher5.png';
 import TeachingTable from 'ui-component/cards/Teaching/TeachingTable';
+import TeachingCourse from 'ui-component/cards/Teaching/TeachingCourse';
+import teachercourse from '../../../assets/images/teachercourse.png';
+import TeacherTask from 'ui-component/cards/Teaching/TeacherTask';
 // ==============================|| DEFAULT TeacherDashboard ||============================== //
 
 const TeacherDashboard = () => {
@@ -27,9 +29,36 @@ const TeacherDashboard = () => {
   }, []);
 
   const data = [
-    {avatar: img3, name: 'John Doe', class: '10th', subject: 'Math',chapter: '5', percentage: '90%', action: "Test", color: '#7F49F2', },
-    {avatar: img2, name: 'Jane Smith', class: '12th', subject: 'Science', chapter: '3' ,percentage: '85%', action:"Quiz", color: '#E9C030'},
-    {avatar: img1, name: 'Jakobs Robert', class: '11th', subject: 'Biology', chapter: '6' ,percentage: '78%', action:"Quiz", color: '#EA794A'},
+    {
+      avatar: img3,
+      name: 'John Doe',
+      class: '10th Class',
+      subject: 'Math',
+      chapter: 'Square Roots',
+      percentage: '90%',
+      action: 'Test',
+      color: '#7F49F2'
+    },
+    {
+      avatar: img2,
+      name: 'Jane Smith',
+      class: '12th Class',
+      subject: 'Chemistry',
+      chapter: 'Periodic Table',
+      percentage: '85%',
+      action: 'Quiz',
+      color: '#E9C030'
+    },
+    {
+      avatar: img1,
+      name: 'Jakobs Robert',
+      class: '11th Class  ',
+      subject: 'Biology',
+      chapter: 'Cell Biology',
+      percentage: '78%',
+      action: 'Quiz',
+      color: '#EA794A'
+    }
   ];
 
   return (
@@ -54,13 +83,14 @@ const TeacherDashboard = () => {
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={gridSpacing}>
-         
-            <Grid item lg={8} md={8} sm={8} xs={12}>
-              <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-                Pending homework
-              </Typography>
-            <TeachingTable  data={data} isLoading={isLoading}/>
-          </Grid> 
+          {/* TEACHING HOMEWORK CARD START */}
+          <Grid item lg={8} md={8} sm={8} xs={12}>
+            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
+              Pending homework
+            </Typography>
+            <TeachingTable data={data} isLoading={isLoading} />
+          </Grid>
+          {/* TEACHING HOMEWORK CARD END */}
           <Grid item lg={4} md={12} sm={12} xs={12}>
             <Grid container spacing={gridSpacing}>
               <Grid item sm={6} xs={12} md={6} lg={12}>
@@ -75,11 +105,24 @@ const TeacherDashboard = () => {
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={gridSpacing}>
-          <Grid item xs={12} md={8}>
-            <TotalGrowthBarChart isLoading={isLoading} />
+          <Grid item xs={12} md={4}>
+            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
+              Courses
+            </Typography>
+            <TeachingCourse
+              img={teachercourse}
+              isLoading={isLoading}
+              title={'Teaching Integrals and Fractional Method'}
+              weeks={5}
+              hours={10}
+              quizes={3}
+            />
           </Grid>
           <Grid item xs={12} md={4}>
-            <PopularCard isLoading={isLoading} />
+            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
+              Courses
+            </Typography>
+            <TeacherTask isLoading={isLoading} />
           </Grid>
         </Grid>
       </Grid>

@@ -19,8 +19,8 @@ const TeachingTable = ({ data }) => {
           <TableBody>
             {data.map((row, index) => (
               <React.Fragment key={index}>
-                <TableRow>
-                  <TableCell component="th" scope="row" style={{ color: 'black' }}>
+                <TableRow sx={{borderRadius: "50%"}}>
+                  <TableCell component="th" scope="row" style={{ color: 'black', padding: '10px 20px'}}>
                     <Box display="flex" alignItems="center">
                       <Avatar style={{ marginRight: '8px' }} src={row.avatar} />
                       {row.name}
@@ -31,11 +31,15 @@ const TeachingTable = ({ data }) => {
                   <TableCell style={{ color: 'black' }}>{row.chapter}</TableCell>
                   <TableCell style={{ color: 'black' }}>{row.percentage}</TableCell>
                   <TableCell style={{ color: 'black' }}>
-                  <Button variant="outlined" color="primary" style={{marginLeft: '10px'}}>{row.action}</Button>
+                    {
+                        row.action === "Quiz" ? 
+                        <Button variant="outlined" color="primary" style={{marginLeft: '10px'}}>{row.action}</Button> :
+                        <Button variant="outlined" color="success" style={{marginLeft: '10px'}}>{row.action}</Button>
+                    }
                   </TableCell>
                 </TableRow>
                 {index !== data.length - 1 && (
-                  <TableRow style={{ height: '10px' , border: 'none' }}>
+                  <TableRow style={{ height: '10px' , border: 'none', backgroundColor: "#EEF2F6" }}>
                     <TableCell colSpan={7} />
                   </TableRow>
                 )}

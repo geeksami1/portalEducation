@@ -9,6 +9,7 @@ import Result from 'views/dashboard/Default/Result';
 import Settings from 'views/dashboard/Default/Settings';
 import Topics from 'views/dashboard/Default/Topics';
 import Lesson from 'views/dashboard/Default/Lesson';
+import Chapter from 'views/dashboard/Default/Chapter';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -28,7 +29,7 @@ const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')))
 // Function to check if the user is a teacher
 const isTeacher = () => {
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user, "userMaiRoutes")
+  console.log(user, 'userMaiRoutes');
   return user && user.userRole === 'teacher';
 };
 
@@ -58,6 +59,7 @@ const MainRoutes = {
         }
       ]
     },
+    // SUBJECT ROUTING
     {
       path: 'dashboard',
       children: [
@@ -67,6 +69,7 @@ const MainRoutes = {
         }
       ]
     },
+    // TOPIC ROUTING
     {
       path: 'dashboard',
       children: [
@@ -85,6 +88,7 @@ const MainRoutes = {
         }
       ]
     },
+    // LESSON ROUTING
     {
       path: 'dashboard',
       children: [
@@ -94,6 +98,17 @@ const MainRoutes = {
         }
       ]
     },
+    // CHAPTER ROUTING
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'chapter',
+          element: <Chapter />
+        }
+      ]
+    },
+    // SETTING ROUTING
     {
       path: 'dashboard',
       children: [
@@ -102,7 +117,8 @@ const MainRoutes = {
           element: <Settings />
         }
       ]
-    },
+    }
+
     // {
     //   path: 'utils',
     //   children: [

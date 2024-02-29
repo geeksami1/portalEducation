@@ -1,12 +1,19 @@
 import dashboard from './dashboard';
-// import pages from './pages';
-// import utilities from './utilities';
-// import other from './other';
+import dashboard2 from './dashboard2';
 
-// ==============================|| MENU ITEMS ||============================== //
+
+const user = JSON.parse(localStorage.getItem('user'))
+const userRole = user && user.userRole;
+console.log(userRole);
+
+// const menuItems = {
+//   items: [dashboard]
+// };
+
+// export default menuItems;
 
 const menuItems = {
-  items: [dashboard]
+  items: [userRole === 'student' ? dashboard : dashboard2]
 };
 
 export default menuItems;
