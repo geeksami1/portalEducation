@@ -4,8 +4,8 @@ import SeeMore from 'ui-component/button/SeeMore';
 
 const MyCourses = ({ courses }) => {
   return (
-    <Box sx={{ backgroundColor: '#FFF', borderRadius: '10px', px:1, py:2 }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2, px:2}}>
+    <Box sx={{ backgroundColor: '#FFF', borderRadius: '10px', px: 1, py: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2, px: 2 }}>
         <Typography variant="h4" sx={{ fontWeight: 600, fontSize: '20px', color: '#000' }}>
           My Courses
         </Typography>
@@ -45,7 +45,7 @@ const MyCourses = ({ courses }) => {
                   <TableCell align="center" sx={{ border: 'none' }}>
                     <Box display="flex" alignItems="center">
                       {/* BOX 1  */}
-                      <Box sx={{background: course.color, px:1 , py:0.5 , borderRadius: '10px'}} >
+                      <Box sx={{ background: course.color, px: 1, py: 0.5, borderRadius: '10px' }}>
                         <img
                           src={course.img}
                           alt="course"
@@ -57,7 +57,7 @@ const MyCourses = ({ courses }) => {
                         <Typography variant="body2" sx={{ textAlign: 'left', color: '#000', fontSize: 11, fontWeight: 600 }}>
                           {course.name}
                         </Typography>
-                        <Typography variant="body2" sx={{   textAlign: 'left', color: 'rgba(0, 0, 0, 0.65)', fontSize: 11 }}>
+                        <Typography variant="body2" sx={{ textAlign: 'left', color: 'rgba(0, 0, 0, 0.65)', fontSize: 11 }}>
                           {course.lessons} lessons
                         </Typography>
                       </Box>
