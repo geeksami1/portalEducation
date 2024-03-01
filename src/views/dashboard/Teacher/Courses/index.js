@@ -11,16 +11,16 @@ import { gridSpacing } from 'store/constant';
 import TotalIncomeDarkCard from '../../Default/TotalIncomeDarkCard';
 import TotalIncomeLightCard from '../../Default/TotalIncomeLightCard';
 // import TotalGrowthBarChart from '../Default/TotalGrowthBarChart';
-import TeachingData from 'ui-component/cards/Teaching/TeachingData';
-import img1 from '../../../../assets/images/teacher1.png';
-import img2 from '../../../../assets/images/teacher3.png';
-import img3 from '../../../../assets/images/teacher2.png';
-import img4 from '../../../../assets/images/teacher5.png';
+
 // import TeachingTable from 'ui-component/cards/Teaching/TeachingTable';
-import TeachingCourse from 'ui-component/cards/Teaching/TeachingCourse';
-import teachercourse from '../../../../assets/images/teachercourse.png';
+
 import TeacherTask from 'ui-component/cards/Teaching/TeacherTask';
+import NewCourses from 'ui-component/cards/TeachingCourses/NewCourses';
 // ==============================|| DEFAULT Course ||============================== //
+import teacherCourseX1 from '../../../../assets/images/teachercourseX1.png';
+import teacherCourseX2 from '../../../../assets/images/teachercourseX2.png';
+import teacherCourseX3 from '../../../../assets/images/teachercourseX3.png';
+import MyCourses from 'ui-component/cards/TeachingCourses/MyCourses';
 
 const Course = () => {
   const [isLoading, setLoading] = useState(true);
@@ -28,59 +28,19 @@ const Course = () => {
     setLoading(false);
   }, []);
 
-  // const data = [
-  //   {
-  //     avatar: img3,
-  //     name: 'John Doe',
-  //     class: '10th Class',
-  //     subject: 'Math',
-  //     chapter: 'Square Roots',
-  //     percentage: '90%',
-  //     action: 'Test',
-  //     color: '#7F49F2'
-  //   },
-  //   {
-  //     avatar: img2,
-  //     name: 'Jane Smith',
-  //     class: '12th Class',
-  //     subject: 'Chemistry',
-  //     chapter: 'Periodic Table',
-  //     percentage: '85%',
-  //     action: 'Quiz',
-  //     color: '#E9C030'
-  //   },
-  //   {
-  //     avatar: img1,
-  //     name: 'Jakobs Robert',
-  //     class: '11th Class  ',
-  //     subject: 'Biology',
-  //     chapter: 'Cell Biology',
-  //     percentage: '78%',
-  //     action: 'Quiz',
-  //     color: '#EA794A'
-  //   }
-  // ];
+  //NEW COURSES
+  const courses = [
+    { name: 'Science', startDate: 'May 15', rate: '5/5', level: 'Advanced', img: teacherCourseX1, lessons: 20 , color: "#E3DBFF"},
+    { name: 'Maths', startDate: 'June 22', rate: '4/5', level: 'Intermediate', img: teacherCourseX2, lessons: 10, color: "#B6DDFF" },
+    { name: 'English', startDate: 'July 15', rate: '3/5', level: 'Beginner', img: teacherCourseX3, lessons: 15 ,  color: "#FFC5F9"},
+    { name: 'History', startDate: 'August 12', rate: '5/5', level: 'Advanced', img: teacherCourseX1, lessons: 20 , color: "#B7A3FD"},
+    { name: 'Geography', startDate: 'September 10', rate: '4/5', level: 'Intermediate', img: teacherCourseX2, lessons: 10, color: "#FACA9B" },
+    // Add more course objects as needed
+  ];
 
   return (
     <Grid container spacing={gridSpacing}>
-      <Grid item xs={12}>
-        {/* TEACHING DATA CARD START */}
-        <Grid container spacing={gridSpacing}>
-          <Grid item lg={3} md={3} sm={3} xs={3}>
-            <TeachingData color={'#7F49F2'} title={'Total Students'} number={'20'} img={img1} />
-          </Grid>
-          <Grid item lg={3} md={3} sm={3} xs={3}>
-            <TeachingData color={'#E9C030'} title={'Total Subjects'} number={'6'} img={img2} />
-          </Grid>
-          <Grid item lg={3} md={3} sm={3} xs={3}>
-            <TeachingData color={'#EA794A'} title={'Total Quizzes'} number={'25'} img={img4} />
-          </Grid>
-          <Grid item lg={3} md={3} sm={3} xs={3}>
-            <TeachingData color={'#3BC6DF'} title={'Total Class'} number={'25'} img={img3} />
-          </Grid>
-        </Grid>
-        {/* TEACHING DATA CARD END */}
-      </Grid>
+   
       <Grid item xs={12}>
         <Grid container spacing={gridSpacing}>
           {/* NEW COURSES CARD START */}
@@ -88,11 +48,20 @@ const Course = () => {
             <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
               New Courses
             </Typography>
-           
-            <TeachingData color={'#3BC6DF'} title={'Total Class'} number={'25'} img={img3} />
-            <TeachingData color={'#3BC6DF'} title={'Total Class'} number={'25'} img={img3} />
-            <TeachingData color={'#3BC6DF'} title={'Total Class'} number={'25'} img={img3} />
+            <Grid container spacing={2}>
+            <Grid item lg={4} md={4} sm={4} xs={12}>
+              <NewCourses image={teacherCourseX2} backgroundColor={'#CBE7FF'} color={'#579BE3'} />
+            </Grid>
+            <Grid item lg={4} md={4} sm={4} xs={12}>
+              <NewCourses image={teacherCourseX1} backgroundColor={'#E9E3FF'}  color={'#A28AE5'}/>
+            </Grid>
+            <Grid item lg={4} md={4} sm={4} xs={12}>
+              <NewCourses image={teacherCourseX3} backgroundColor={'#FFF0E1'}  color={'#FBAB5D'}/>
+            </Grid>
+
+            </Grid>
           </Grid>
+
           {/* NEW COURSES CARD END */}
           <Grid item lg={4} md={12} sm={12} xs={12}>
             <Grid container spacing={gridSpacing}>
@@ -108,20 +77,10 @@ const Course = () => {
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={gridSpacing}>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-              Course
-            </Typography>
-            <TeachingCourse
-              img={teachercourse}
-              isLoading={isLoading}
-              title={'Teaching Integrals and Fractional Method'}
-              weeks={5}
-              hours={10}
-              quizes={3}
-            />
+          <Grid item xs={12} md={5}>
+           <MyCourses courses={courses} isLoading={isLoading} />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
               Course
             </Typography>
