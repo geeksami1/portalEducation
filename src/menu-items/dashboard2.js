@@ -28,6 +28,14 @@ const dashboard2 = {
         icon: icons.IconDashboard,
         breadcrumbs: false
       },
+      {
+        id: 'student',
+        title: 'Student',
+        type: 'item',
+        url: '/dashboard/student',
+        icon: icons.IconDashboard,
+        breadcrumbs: false
+      },
     
   ]
 };
