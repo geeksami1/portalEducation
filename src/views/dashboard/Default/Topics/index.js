@@ -11,7 +11,7 @@ import premium03 from '../../../../assets/images/premium03.png';
 import TopicsTableUi from 'ui-component/table/TopicsTableUi';
 import img1 from '../../../../assets/images/tableui1.png';
 const data = [
-  { topic: 'Topic 1', difficulty: 'Easy', lessons: 5, practice: 10, quiz: 3, status: 'Completed', backgroundColor: '#c77195', icon: img1 },
+  { topic: 'Biology', difficulty: 'Easy', lessons: 5, practice: 10, quiz: 3, status: 'Completed', backgroundColor: '#c77195', icon: img1 },
   {
     topic: 'Topic 2',
     difficulty: 'Medium',
