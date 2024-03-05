@@ -8,8 +8,8 @@ import { Grid, Typography } from '@mui/material';
 import { gridSpacing } from 'store/constant';
 // import EarningCard from '../Default/EarningCard';
 // import TotalOrderLineChartCard from '../Default/TotalOrderLineChartCard';
-import TotalIncomeDarkCard from '../../Default/TotalIncomeDarkCard';
-import TotalIncomeLightCard from '../../Default/TotalIncomeLightCard';
+// import TotalIncomeDarkCard from '../../Default/TotalIncomeDarkCard';
+// import TotalIncomeLightCard from '../../Default/TotalIncomeLightCard';
 // import TotalGrowthBarChart from '../Default/TotalGrowthBarChart';
 
 // import TeachingTable from 'ui-component/cards/Teaching/TeachingTable';
@@ -22,6 +22,7 @@ import teacherCourseX2 from '../../../../assets/images/teachercourseX2.png';
 import teacherCourseX3 from '../../../../assets/images/teachercourseX3.png';
 import MyCourses from 'ui-component/cards/TeachingCourses/MyCourses';
 import ActivityCourse from 'ui-component/cards/TeachingCourses/ActivityCourse';
+import ProfileProgress from 'ui-component/cards/TeachingCourses/ProfileProgress';
 
 const Course = () => {
   const [isLoading, setLoading] = useState(true);
@@ -48,51 +49,48 @@ const Course = () => {
   ];
 
   return (
-    <Grid container spacing={gridSpacing}>
-      <Grid item xs={12}>
-        <Grid container spacing={gridSpacing}>
-          {/* NEW COURSES CARD START */}
-          <Grid item lg={8} md={8} sm={8} xs={12}>
-            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-              New Courses
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item lg={4} md={4} sm={4} xs={12}>
-                <NewCourses image={teacherCourseX2} backgroundColor={'#CBE7FF'} color={'#579BE3'} />
-              </Grid>
-              <Grid item lg={4} md={4} sm={4} xs={12}>
-                <NewCourses image={teacherCourseX1} backgroundColor={'#E9E3FF'} color={'#A28AE5'} />
-              </Grid>
-              <Grid item lg={4} md={4} sm={4} xs={12}>
-                <NewCourses image={teacherCourseX3} backgroundColor={'#FFF0E1'} color={'#FBAB5D'} />
-              </Grid>
-            </Grid>
-          </Grid>
-
-          {/* NEW COURSES CARD END */}
-          <Grid item lg={4} md={12} sm={12} xs={12}>
-            <Grid container spacing={gridSpacing}>
-              <Grid item sm={6} xs={12} md={6} lg={12}>
-                <TotalIncomeDarkCard isLoading={isLoading} />
-              </Grid>
-              <Grid item sm={6} xs={12} md={6} lg={12}>
-                <TotalIncomeLightCard isLoading={isLoading} />
+    <>
+      <Grid container spacing={gridSpacing}>
+        <Grid item xs={8}>
+          <Grid container spacing={gridSpacing}>
+            {/* NEW COURSES CARD START */}
+            <Grid item lg={12} md={8} sm={8} xs={12}>
+              <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
+                New Courses
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item lg={4} md={4} sm={4} xs={12}>
+                  <NewCourses image={teacherCourseX2} backgroundColor={'#CBE7FF'} color={'#579BE3'} />
+                </Grid>
+                <Grid item lg={4} md={4} sm={4} xs={12}>
+                  <NewCourses image={teacherCourseX1} backgroundColor={'#E9E3FF'} color={'#A28AE5'} />
+                </Grid>
+                <Grid item lg={4} md={4} sm={4} xs={12}>
+                  <NewCourses image={teacherCourseX3} backgroundColor={'#FFF0E1'} color={'#FBAB5D'} />
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container spacing={gridSpacing}>
-          <Grid item xs={12} md={5}>
-            <MyCourses courses={courses} isLoading={isLoading} />
+        <Grid item xs={4}>
+          <Grid container spacing={gridSpacing}>
+            <Grid item xs={12} md={12}>
+              <ProfileProgress value={90} isLoading={isLoading} />
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={3.5}>
-            <ActivityCourse />
+        </Grid>
+        <Grid item xs={8}>
+          <Grid container spacing={gridSpacing}>
+            <Grid item xs={12} md={6}>
+              <MyCourses courses={courses} isLoading={isLoading} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <ActivityCourse />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

@@ -1,27 +1,80 @@
 import { useEffect, useState } from 'react';
-
-// material-ui
-import { Grid, Typography } from '@mui/material';
-
-// project imports
-
+import { Grid } from '@mui/material';
 import { gridSpacing } from 'store/constant';
-// import EarningCard from '../Default/EarningCard';
-// import TotalOrderLineChartCard from '../Default/TotalOrderLineChartCard';
-import TotalIncomeDarkCard from '../../Default/TotalIncomeDarkCard';
-import TotalIncomeLightCard from '../../Default/TotalIncomeLightCard';
-// import TotalGrowthBarChart from '../Default/TotalGrowthBarChart';
+import TeachingStudentsCard from 'ui-component/cards/TeachingStudents/TeachingStudentsCard';
+import teacherstudent1 from '../../../../assets/images/teacherstudent1.png';
+import teacherstudent2 from '../../../../assets/images/teacherstudent2.png';
+import teacherstudent3 from '../../../../assets/images/teacherstudent3.png';
+import teacherstudent4 from '../../../../assets/images/teacherstudent4.png';
+const studentdata = [
+  {
+    id: 1,
+    date: '22',
+    month: 'Feb',
+    firstName: 'John',
+    lastName: 'Doe',
+    grade: '10th',
+    duration: '2h 30m',
+    img: teacherstudent1,
+    cardColor: '#DFF8FB'
+  },
+  {
+    id: 2,
+    date: '22',
+    month: 'Mar',
+    firstName: 'Jasmin',
+    lastName: 'Jones',
+    grade: '10th',
+    duration: '2h 30m',
+    img: teacherstudent2,
+    cardColor: '#FFD9D9'
+  },
+  {
+    id: 3,
+    date: '15',
+    month: 'Apr',
+    firstName: 'Emily',
+    lastName: 'Smith',
+    grade: '9th',
+    duration: '1h 45m',
+    img: teacherstudent3,
+    cardColor: '#FCE8B3'
+  },
+  {
+    id: 4,
+    date: '18',
+    month: 'May',
+    firstName: 'Michael',
+    lastName: 'Brown',
+    grade: '11th',
+    duration: '2h 15m',
+    img: teacherstudent4,
+    cardColor: '#D6EAF8'
+  },
+  {
+    id: 5,
+    date: '10',
+    month: 'Jun',
+    firstName: 'Sophia',
+    lastName: 'Johnson',
+    grade: '12th',
+    duration: '2h 30m',
+    img: teacherstudent1,
+    cardColor: '#F5CBA7'
+  },
+  {
+    id: 6,
+    date: '5',
+    month: 'Jul',
+    firstName: 'William',
+    lastName: 'Davis',
+    grade: '8th',
+    duration: '1h 30m',
+    img: teacherstudent2,
+    cardColor: '#D5DBDB'
+  }
+];
 
-// import TeachingTable from 'ui-component/cards/Teaching/TeachingTable';
-
-// import TeacherTask from 'ui-component/cards/Teaching/TeacherTask';
-import NewCourses from 'ui-component/cards/TeachingCourses/NewCourses';
-// ==============================|| DEFAULT Course ||============================== //
-import teacherCourseX1 from '../../../../assets/images/teachercourseX1.png';
-import teacherCourseX2 from '../../../../assets/images/teachercourseX2.png';
-import teacherCourseX3 from '../../../../assets/images/teachercourseX3.png';
-import MyCourses from 'ui-component/cards/TeachingCourses/MyCourses';
-import ActivityCourse from 'ui-component/cards/TeachingCourses/ActivityCourse';
 
 const Student = () => {
   const [isLoading, setLoading] = useState(true);
@@ -29,63 +82,27 @@ const Student = () => {
     setLoading(false);
   }, []);
 
-  //NEW COURSES
-  const courses = [
-    { name: 'Science', startDate: 'May 15', rate: '5/5', level: 'Advanced', img: teacherCourseX1, lessons: 20 , color: "#E3DBFF"},
-    { name: 'Maths', startDate: 'June 22', rate: '4/5', level: 'Intermediate', img: teacherCourseX2, lessons: 10, color: "#B6DDFF" },
-    { name: 'English', startDate: 'July 15', rate: '3/5', level: 'Beginner', img: teacherCourseX3, lessons: 15 ,  color: "#FFC5F9"},
-    { name: 'History', startDate: 'August 12', rate: '5/5', level: 'Advanced', img: teacherCourseX1, lessons: 20 , color: "#B7A3FD"},
-    { name: 'Geography', startDate: 'September 10', rate: '4/5', level: 'Intermediate', img: teacherCourseX2, lessons: 10, color: "#FACA9B" },
-    // Add more course objects as needed
-  ];
-
   return (
     <Grid container spacing={gridSpacing}>
-   
-      <Grid item xs={12}>
+      {/* Card Section - 6 columns on extra small screens and above */}
+      <Grid item xs={12} sm={8}>
+        {/* Your card section content */}
         <Grid container spacing={gridSpacing}>
-          {/* NEW COURSES CARD START */}
-          <Grid item lg={8} md={8} sm={8} xs={12}>
-            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-              My Students
-            </Typography>
-            <Grid container spacing={2}>
-            <Grid item lg={4} md={4} sm={4} xs={12}>
-              <NewCourses image={teacherCourseX2} backgroundColor={'#CBE7FF'} color={'#579BE3'} />
-            </Grid>
-            <Grid item lg={4} md={4} sm={4} xs={12}>
-              <NewCourses image={teacherCourseX1} backgroundColor={'#E9E3FF'}  color={'#A28AE5'}/>
-            </Grid>
-            <Grid item lg={4} md={4} sm={4} xs={12}>
-              <NewCourses image={teacherCourseX3} backgroundColor={'#FFF0E1'}  color={'#FBAB5D'}/>
-            </Grid>
-
-            </Grid>
-          </Grid>
-
-          {/* NEW COURSES CARD END */}
-          <Grid item lg={4} md={12} sm={12} xs={12}>
-            <Grid container spacing={gridSpacing}>
-              <Grid item sm={6} xs={12} md={6} lg={12}>
-                <TotalIncomeDarkCard isLoading={isLoading} />
+          {
+            studentdata.map((item, index) => (
+              <Grid key={index} item xs={6}>
+                <TeachingStudentsCard data={item} isLoading={isLoading} />
               </Grid>
-              <Grid item sm={6} xs={12} md={6} lg={12}>
-                <TotalIncomeLightCard isLoading={isLoading} />
-              </Grid>
-            </Grid>
-          </Grid>
+            ))
+          }
+        
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Grid container spacing={gridSpacing}>
-          <Grid item xs={12} md={5}>
-           <MyCourses courses={courses} isLoading={isLoading} />
-          </Grid>
-          <Grid item xs={12} md={3.5}>
-           
-            <ActivityCourse/>
-          </Grid>
-        </Grid>
+
+      {/* Leadership List - 6 columns on extra small screens and above */}
+      <Grid item xs={12} sm={4}>
+        {/* Your leadership list content */}
+        {/* <TeachingStudentsCard isLoading={isLoading} /> */}
       </Grid>
     </Grid>
   );
