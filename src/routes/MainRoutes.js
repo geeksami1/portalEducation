@@ -12,6 +12,8 @@ import Lesson from 'views/dashboard/Default/Lesson';
 import Chapter from 'views/dashboard/Default/Chapter';
 import Course from 'views/dashboard/Teacher/Courses';
 import Student from 'views/dashboard/Teacher/Student';
+import Feedback from 'views/dashboard/Teacher/Feedback';
+import Quiz from 'views/dashboard/Default/Quiz';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -32,7 +34,7 @@ const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')))
 const isTeacher = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   console.log(user, 'userMaiRoutes');
-  return user && user.userRole === 'teacher';
+  return user && user.role === 'teacher';
 };
 
 const MainRoutes = {
@@ -135,6 +137,24 @@ const MainRoutes = {
         {
           path: 'student',
           element: <Student />
+        }
+      ]
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'feedback',
+          element: <Feedback />
+        }
+      ]
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'quiz',
+          element: <Quiz />
         }
       ]
     }

@@ -2,6 +2,7 @@
 
 // project imports
 import MainLayout from 'layout/MainLayout';
+import Quiz from 'views/dashboard/Default/Quiz';
 // import Loadable from 'ui-component/Loadable';
 import TeacherDashboard from 'views/dashboard/Teacher';
 import Courses from 'views/dashboard/Teacher/Courses';
@@ -58,6 +59,15 @@ const TeacherRoutes = {
         {
           path: 'student',
           element: <Student />
+        }
+      ]
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'quiz',
+          element: <Quiz />
         }
       ]
     }

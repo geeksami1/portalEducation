@@ -61,7 +61,7 @@ const Dashboard = () => {
                 </Grid>
 
                 <Grid item xs={6}  md={3} lg={3}>
-                  <SubjectBox img={subject2} title="Chemistry" bgColor="#56CD78" />
+                  <SubjectBox img={subject2} title="Mathematics" bgColor="#56CD78" />
                 </Grid>
                 <Grid item xs={6}  md={3} lg={3}>
                   <SubjectBox img={subject3} title="English" bgColor="#D54041" />

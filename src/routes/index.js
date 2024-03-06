@@ -10,7 +10,7 @@ import TeacherRoutes from './TeacherRoutes';
 // ==============================|| ROUTING RENDER ||============================== //
 const user = JSON.parse(localStorage.getItem('user'));
 console.log(user, 'TeacherRoutes');
-const userRoute = user && user.userRole;
+const userRoute = user && user.role;
 export default function ThemeRoutes() {
   return useRoutes([
     // MainRoutes,

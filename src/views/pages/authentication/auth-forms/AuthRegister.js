@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 
@@ -62,19 +62,12 @@ const Register = ({ ...others }) => {
     event.preventDefault();
   };
 
-  const changePassword = () => {
-    // const temp = strengthIndicator(value);
-    // setStrength(temp);
-    // setLevel(strengthColor(temp));
-  };
   const handleUserRoleChange = (event) => {
     console.log(event.target.value, 'event.target.value');
     setUserRole(event.target.value);
   };
 
-  useEffect(() => {
-    changePassword('123456');
-  }, []);
+
 
   return (
     <>
@@ -95,6 +88,7 @@ const Register = ({ ...others }) => {
           email: '',
           password: '',
           userRole: '',
+          grade: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -102,8 +96,13 @@ const Register = ({ ...others }) => {
           lname: Yup.string().max(255).required('Last Name is required'),
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string().max(255).required('Password is required'),
-          userRole: Yup.string().required('User Role is required')
-          // userRole: Yup.string().optional()
+          userRole: Yup.string().required('User Role is required'),
+          // grade: Yup.string().when('userRole', {
+          //   is: 'parent',
+          //   then: Yup.string().required('Grade is required'),
+          //   otherwise: Yup.string().notRequired()
+          // })
+          // userRole: Yup.string().optional()  
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
@@ -209,7 +208,6 @@ const Register = ({ ...others }) => {
                 onBlur={handleBlur}
                 onChange={(e) => {
                   handleChange(e);
-                  changePassword(e.target.value);
                 }}
                 endAdornment={
                   <InputAdornment position="end">

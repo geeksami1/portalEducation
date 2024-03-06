@@ -3,7 +3,7 @@ import dashboard2 from './dashboard2';
 
 
 const user = JSON.parse(localStorage.getItem('user'))
-const userRole = user && user.userRole;
+const userRole = user && user.role;
 console.log(userRole);
 
 // const menuItems = {
