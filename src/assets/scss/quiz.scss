@@ -1,87 +1,25 @@
-.quiz-card {
-  height: 100%;
-  width: 100%;
-  border-radius: 2px;
-  background-color: #fff;
-  padding: 50px 100px;
+.quiz-card-wrapper {
+  margin: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
 
-  .top-section {
+  .quiz-card {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .question-number {
-      font-size: 20px;
-      background: linear-gradient(269.64deg, rgba(166, 88, 245, 0.75) 0%, rgba(112, 0, 255, 0.75) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-weight: 600;
-    }
-
-    .question-info {
-      display: flex;
-      align-items: center;
-    }
-
-    .clocky-image {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
-    }
-  }
-
-  .line-break {
-    border-top: 2px solid rgba(0, 0, 0, 0.3);
-    margin-top: 25px;
-    margin-bottom: 20px;
-  }
-
-  .content-section {
-    width: 100%;
-    display: flex;
-    // align-items: center;
-    // height: 100%;
-
-    .question-section {
-      width: 50%;
-      margin-top: 20px;
-      margin-bottom: 20px;
-
-      .header-question {
-        font-size: 20px;
-      }
-      .answer-section {
-        margin-top: 20px;
-        background-color: rgba(0, 0, 0, 0.07);
-        padding: 20px;
-        cursor: pointer;
-        border-radius: 20px;
-      }
-
-      .answer-section h6 {
-        font-size: 16px;
-      }
-    }
-
-    .image-section {
-      .quiz-image {
-        object-fit: cover;
-        width: 450px;
-        padding-left: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        height: 100%;
-      }
-    }
-  }
-
-  .bottom-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 75%;
-
+    flex-direction: column;
     margin: auto;
+    padding: 20px;
+    width: 80%;
+    // background: yellow;
+
+    .selected-answer {
+      background: linear-gradient(269.64deg, rgba(166, 88, 245, 0.75) 0%, rgba(112, 0, 255, 0.75) 100%);
+      border-radius: 20px;
+    }
+
+    .choice {
+      color: #000;
+      font-size: 15px;
+    }
   }
 }
