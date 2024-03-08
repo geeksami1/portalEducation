@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Typography, List, ListItem, ListItemText, Radio, RadioGroup, FormControlLabel, Button, Box, Card } from '@mui/material';
-import '../../../src/assets/scss/quiz.scss';
+import React, { useState, useEffect } from 'react';
+import { Typography, Radio, RadioGroup, FormControlLabel, Button, Box, Card } from '@mui/material';
+import AnswerTimer from 'ui-component/AnswerTimer/AnswerTimer';
 import { resultInitialState } from 'assets/data/quizdata';
 import '../../../src/assets/scss/quiz.scss';
 
@@ -10,10 +10,12 @@ const QuizCard = ({ questions }) => {
   const [answer, setAnswer] = useState(null);
   const [result, setResult] = useState(resultInitialState);
   const [showResult, setShowResult] = useState(false);
+  const [timeUp, setTimeUp] = useState(false);
+  const [durationEnded, setDurationEnded] = useState(false);
 
   const { question, choices, correctAnswer } = questions[currentQuestion];
 
-  const onAnwswerClick = (answer, index) => {
+  const onAnswerClick = (answer, index) => {
     setAnswerIdx(index);
     if (answer === correctAnswer) {
       setAnswer(true);
@@ -40,70 +42,127 @@ const QuizCard = ({ questions }) => {
     if (currentQuestion !== questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
-      setCurrentQuestion(0);
       setShowResult(true);
     }
   };
 
   const onTryAgain = () => {
+    setCurrentQuestion(0);
+    setAnswerIdx(null);
+    setAnswer(null);
     setResult(resultInitialState);
     setShowResult(false);
+    setTimeUp(false);
+    setDurationEnded(false);
   };
 
+  const handleTimeUp = () => {
+    setTimeUp(true);
+    setDurationEnded(true);
+    onClickNext();
+  };
+
+  useEffect(() => {
+    if (showResult) {
+      setTimeUp(false); // Disable timer when showing result
+    }
+  }, [showResult]);
+
   return (
-    <Box className="quiz-card-wrapper">
-      <Card className="quiz-card">
-        {!showResult ? (
-          <>
-            <Typography variant="h5" gutterBottom>
-              <span className="active-question-no">{currentQuestion + 1}</span>
-              <span className="total-question">/{questions.length}</span>
+    <>
+      <Box className="quiz-card-wrapper">
+        {!showResult && !timeUp && (
+          <Box className="quiz-card-header">
+            <Typography variant="h5" className="question-number">
+              Question No:
+              <span className="question-number-info">
+                {currentQuestion + 1}/{questions.length}
+              </span>
             </Typography>
-            <Typography variant="h6" gutterBottom className="header-question">
-              {question}
+
+            <Typography variant="h5" className="score">
+              Score:
+              <span className="question-number-info">{result.score}</span>
             </Typography>
-            <RadioGroup>
-              {choices.map((choice, index) => (
-                <FormControlLabel
-                  onClick={() => onAnwswerClick(choice, index)}
-                  key={choice}
-                  className={answerIdx === index ? 'selected-answer' : null}
-                  value={choice}
-                  control={<Radio />}
-                  label={<Typography className="choice">{choice}</Typography>}
-                />
-              ))}
-            </RadioGroup>
-            <div className="footer">
-              <Button onClick={onClickNext} disabled={answerIdx === null} variant="contained" color="primary">
-                {currentQuestion === questions.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-            </div>
-          </>
-        ) : (
-          <div className="result">
-            <Typography variant="h6" gutterBottom>
-              Result
-            </Typography>
-            <Typography sx={{ color: 'black' }} variant="body1" gutterBottom>
-              Total Questions: {questions.length}
-            </Typography>
-            <Typography sx={{ color: 'black' }} variant="body1" gutterBottom>
-              Total Score: {result.score}
-            </Typography>
-            <Typography sx={{ color: 'black' }} variant="body1" gutterBottom>
-              Correct Answers: {result.correctAnswers}
-            </Typography>
-            <Typography sx={{ color: 'black' }} variant="body1" gutterBottom>
-              Wrong Answers: {result.wrongAnswers}
-            </Typography>
-            <Button onClick={onTryAgain} variant="contained" color="primary">
-              Try again
-            </Button>
-          </div>
+          </Box>
         )}
-      </Card>
-    </Box>
+
+        <Card className="quiz-card">
+          {!showResult && !timeUp ? (
+            <>
+              <Box>
+                <Typography variant="h6" gutterBottom className="header-question">
+                  {question}
+                </Typography>
+                <RadioGroup>
+                  {choices.map((choice, index) => (
+                    <FormControlLabel
+                      onClick={() => onAnswerClick(choice, index)}
+                      key={choice}
+                      className={answerIdx === index ? 'selected-answer' : null}
+                      value={choice}
+                      control={<Radio style={{ color: answerIdx === index ? 'white' : 'black' }} />}
+                      label={
+                        <Typography className="choice" style={{ color: answerIdx === index ? 'white' : 'black' }}>
+                          {choice}
+                        </Typography>
+                      }
+                    />
+                  ))}
+                </RadioGroup>
+                <Box className="footer">
+                  <Button
+                    className="quiz-btn"
+                    size="small"
+                    onClick={onClickNext}
+                    disabled={answerIdx === null}
+                    variant="contained"
+                    color="primary"
+                  >
+                    {currentQuestion === questions.length - 1 ? 'Finish' : 'Next'}
+                  </Button>
+                </Box>
+              </Box>
+              <AnswerTimer duration={30} onTimeUp={handleTimeUp} />
+            </>
+          ) : (
+           !timeUp && <Box className="result">
+              <Typography variant="h6" gutterBottom className="result-header">
+                Result 🎉
+              </Typography>
+              <Box className="result-info">
+                <Typography sx={{ color: 'black' }} variant="body1" className="result-text" gutterBottom>
+                  Total Questions: <span className="question-number-info">{questions.length}</span>
+                </Typography>
+                <Typography sx={{ color: 'black' }} variant="body1" className="result-text" gutterBottom>
+                  Total Score: {result.score}
+                </Typography>
+                <Typography sx={{ color: 'black' }} variant="body1" className="result-text" gutterBottom>
+                  Correct Answers: {result.correctAnswers}
+                </Typography>
+                <Typography sx={{ color: 'black' }} variant="body1" className="result-text" gutterBottom>
+                  Wrong Answers: {result.wrongAnswers}
+                </Typography>
+              </Box>
+              <Button className="quiz-btn" onClick={onTryAgain} variant="contained" color="primary">
+                Try again
+              </Button>
+            </Box>
+          )}
+          {timeUp && (
+            <Box className="result" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
+              <Typography variant="h6" gutterBottom className="result-header" style={{marginTop: '20%'}} >
+                Duration has ended ⏰
+              </Typography>
+              <Button className="quiz-btn" onClick={onTryAgain} variant="contained" color="primary"
+                style={{marginTop: '10%'}}>
+                Try again
+              </Button>
+            </Box>
+          )}
+        </Card>
+      </Box>
+    </>
   );
 };
 

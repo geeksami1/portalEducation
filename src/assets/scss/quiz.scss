@@ -1,25 +1,100 @@
 .quiz-card-wrapper {
   margin: 10px;
-  background-color: white;
+  // background-color: white;
+  background: linear-gradient(269.64deg, rgba(166, 88, 245, 0.75) 0%, rgba(112, 0, 255, 0.75) 100%);
   border-radius: 10px;
   padding: 20px;
+  position: relative;
+  box-sizing: border-box;
+
+  .quiz-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: 20px 0px;
+    width: 60%;
+    .question-number {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: capitalize;
+
+      .question-number-info {
+        font-size: 24px;
+        margin-left: 10px;
+      }
+    }
+
+    .score {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: capitalize;
+
+      .question-number-info {
+        font-size: 24px;
+        margin-left: 10px;
+      }
+    }
+  }
 
   .quiz-card {
     display: flex;
     flex-direction: column;
     margin: auto;
     padding: 20px;
-    width: 80%;
-    // background: yellow;
+    width: 60%;
+    height: 400px;
+
+    .result {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .result-header {
+        font-size: 28px;
+      }
+
+      .quiz-btn {
+        background: linear-gradient(269.64deg, rgba(166, 88, 245, 0.75) 0%, rgba(112, 0, 255, 0.75) 100%);
+        padding: 10px 60px;
+      }
+
+      .result-info {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .result-text {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .header-question {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
 
     .selected-answer {
       background: linear-gradient(269.64deg, rgba(166, 88, 245, 0.75) 0%, rgba(112, 0, 255, 0.75) 100%);
       border-radius: 20px;
+      color: #fff;
     }
 
     .choice {
       color: #000;
       font-size: 15px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      margin-top: 50px;
+
+      .quiz-btn {
+        background: linear-gradient(269.64deg, rgba(166, 88, 245, 0.75) 0%, rgba(112, 0, 255, 0.75) 100%);
+        padding: 10px 60px;
+      }
     }
   }
 }

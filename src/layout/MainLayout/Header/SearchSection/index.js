@@ -73,33 +73,34 @@ const MobileSearch = ({ value, setValue, popupState }) => {
         </InputAdornment>
       }
       endAdornment={
-        <InputAdornment position="end">
-          <ButtonBase sx={{ borderRadius: '12px' }}>
-            <HeaderAvatarStyle variant="rounded">
-              <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
-            </HeaderAvatarStyle>
-          </ButtonBase>
-          <Box sx={{ ml: 2 }}>
-            <ButtonBase sx={{ borderRadius: '12px' }}>
-              <Avatar
-                variant="rounded"
-                sx={{
-                  ...theme.typography.commonAvatar,
-                  ...theme.typography.mediumAvatar,
-                  background: theme.palette.orange.light,
-                  color: theme.palette.orange.dark,
-                  '&:hover': {
-                    background: theme.palette.orange.dark,
-                    color: theme.palette.orange.light
-                  }
-                }}
-                {...bindToggle(popupState)}
-              >
-                <IconX stroke={1.5} size="1.3rem" />
-              </Avatar>
-            </ButtonBase>
-          </Box>
-        </InputAdornment>
+        <></>
+        // <InputAdornment position="end">
+        //   <ButtonBase sx={{ borderRadius: '12px' }}>
+        //     <HeaderAvatarStyle variant="rounded">
+        //       <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+        //     </HeaderAvatarStyle>
+        //   </ButtonBase>
+        //   <Box sx={{ ml: 2 }}>
+        //     <ButtonBase sx={{ borderRadius: '12px' }}>
+        //       <Avatar
+        //         variant="rounded"
+        //         sx={{
+        //           ...theme.typography.commonAvatar,
+        //           ...theme.typography.mediumAvatar,
+        //           background: theme.palette.orange.light,
+        //           color: theme.palette.orange.dark,
+        //           '&:hover': {
+        //             background: theme.palette.orange.dark,
+        //             color: theme.palette.orange.light
+        //           }
+        //         }}
+        //         {...bindToggle(popupState)}
+        //       >
+        //         <IconX stroke={1.5} size="1.3rem" />
+        //       </Avatar>
+        //     </ButtonBase>
+        //   </Box>
+        // </InputAdornment>
       }
       aria-describedby="search-helper-text"
       inputProps={{ 'aria-label': 'weight' }}
@@ -173,13 +174,15 @@ const SearchSection = () => {
             </InputAdornment>
           }
           endAdornment={
-            <InputAdornment position="end">
-              <ButtonBase sx={{ borderRadius: '12px' }}>
-                <HeaderAvatarStyle variant="rounded">
-                  <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
-                </HeaderAvatarStyle>
-              </ButtonBase>
-            </InputAdornment>
+            <>
+            </>
+            // <InputAdornment position="end">
+            //   <ButtonBase sx={{ borderRadius: '12px' }}>
+            //     <HeaderAvatarStyle variant="rounded">
+            //       <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+            //     </HeaderAvatarStyle>
+            //   </ButtonBase>
+            // </InputAdornment>
           }
           aria-describedby="search-helper-text"
           inputProps={{ 'aria-label': 'weight' }}
