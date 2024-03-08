@@ -6,6 +6,7 @@
   padding: 20px;
   position: relative;
   box-sizing: border-box;
+  height: 520px;
 
   .quiz-card-header {
     display: flex;
@@ -51,6 +52,31 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      .result-header {
+        font-size: 28px;
+      }
+
+      .quiz-btn {
+        background: linear-gradient(269.64deg, rgba(166, 88, 245, 0.75) 0%, rgba(112, 0, 255, 0.75) 100%);
+        padding: 10px 60px;
+      }
+
+      .result-info {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .result-text {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .result2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 20px;
+
       .result-header {
         font-size: 28px;
       }

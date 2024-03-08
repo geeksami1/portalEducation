@@ -91,6 +91,8 @@ const QuizCard = ({ questions }) => {
           {!showResult && !timeUp ? (
             <>
               <Box>
+                {/* QUESTION HEADING  */}
+                
                 <Typography variant="h6" gutterBottom className="header-question">
                   {question}
                 </Typography>
@@ -150,7 +152,7 @@ const QuizCard = ({ questions }) => {
             </Box>
           )}
           {timeUp && (
-            <Box className="result" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
+            <Box className="result2" >
               <Typography variant="h6" gutterBottom className="result-header" style={{marginTop: '20%'}} >
                 Duration has ended ⏰
               </Typography>
