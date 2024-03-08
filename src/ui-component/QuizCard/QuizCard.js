@@ -64,7 +64,7 @@ const QuizCard = ({ questions }) => {
 
   useEffect(() => {
     if (showResult) {
-      setTimeUp(false); // Disable timer when showing result
+      setTimeUp(false); 
     }
   }, [showResult]);
 
