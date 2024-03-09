@@ -16,7 +16,7 @@ const PremiumTopics = ({ image , title, desc }) => {
           <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '14px', color: '#000000AB'}}>
             {title}
           </Typography>
-          <Typography variant="h6" sx={{ fontWeight: 200, fontSize: '14px', color: '#000000AB', mb: 2 }}>
+          <Typography variant="h6" sx={{ fontWeight: 200, fontSize: '12px', color: '#000000AB', mb: 2 }}>
            {desc}
           </Typography>
         </Box>

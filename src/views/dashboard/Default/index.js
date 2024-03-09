@@ -1,8 +1,5 @@
 import { useEffect } from 'react';
-
-// material-ui
 import { Box, Grid, Typography } from '@mui/material';
-
 // project imports
 // import EarningCard from './EarningCard';
 // import PopularCard from './PopularCard';
@@ -15,7 +12,7 @@ import IntroCard from './IntroCard';
 import SubjectBox from './SubjectBox';
 
 //IMAGE SUBJECT IMPORTS
-import subject1 from '../../../../src/assets/images/subject1.png';
+import subject1 from '../../../../src/assets/images/Frame 100.png';
 import subject2 from '../../../../src/assets/images/subject2.png';
 import subject3 from '../../../../src/assets/images/subject3.png';
 import subject4 from '../../../../src/assets/images/subject4.png';
@@ -57,17 +54,17 @@ const Dashboard = () => {
               </Box>
               <Grid container spacing={2}>
                 <Grid item xs={6} md={3} lg={3}>
-                  <SubjectBox img={subject1} title="Physics" bgColor="#7A3FF7" />
+                  <SubjectBox img={subject1} title="Mathematics" bgColor="#3bc6df" />
                 </Grid>
 
                 <Grid item xs={6}  md={3} lg={3}>
-                  <SubjectBox img={subject2} title="Mathematics" bgColor="#56CD78" />
+                  <SubjectBox img={subject2} title="Physics" bgColor="#7A3FF7" />
                 </Grid>
                 <Grid item xs={6}  md={3} lg={3}>
                   <SubjectBox img={subject3} title="English" bgColor="#D54041" />
                 </Grid>
                 <Grid item xs={6}  md={3} lg={3}>
-                  <SubjectBox img={subject4} title="Biology" bgColor="#25C4E1" />
+                  <SubjectBox img={subject4} title="Biology" bgColor="#56CD78" />
                 </Grid>
               </Grid>
             </Grid>

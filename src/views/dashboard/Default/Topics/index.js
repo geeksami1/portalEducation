@@ -10,8 +10,9 @@ import premium02 from '../../../../assets/images/premium02.png';
 import premium03 from '../../../../assets/images/premium03.png';
 import TopicsTableUi from 'ui-component/table/TopicsTableUi';
 import img1 from '../../../../assets/images/tableui1.png';
+import TableTopics from 'ui-component/table/TableTopics';
 const data = [
-  { topic: 'Biology', difficulty: 'Easy', lessons: 5, practice: 10, quiz: 3, status: 'Completed', backgroundColor: '#c77195', icon: img1 },
+  { topic: 'SEL in Mathematics Education', difficulty: 'Easy', lessons: 5, practice: 10, quiz: 3, status: 'Completed', backgroundColor: '#c77195', icon: img1 },
   {
     topic: 'Topic 2',
     difficulty: 'Medium',
@@ -39,11 +40,11 @@ const Topics = () => (
       {/* BIOLOGY TOPIC START  */}
       <Grid item xs={12} md={12} lg={12}>
         <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-          Biology Topics
+          Mathematics Topics
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={5}>
-            <TopicSlider img={subject6} title="Physics" bgColor="#7A3FF7" />
+            <TopicSlider img={subject6} title="Mathematics" bgColor="#7A3FF7" />
           </Grid>
 
           <Grid item xs={1}></Grid>
@@ -56,8 +57,8 @@ const Topics = () => (
               <Box sx={{ width: '100%' }}>
                 <PremiumTopics
                   image={premium01}
-                  title={'Cell Structure'}
-                  desc={'It is the structural and functional unit of a living organism.'}
+                  title={'SEL in Mathematics Education'}
+                  desc={'social-emotional learning skills within the context of mathematics teaching and learning.'}
                 />
                 <PremiumTopics
                   image={premium02}

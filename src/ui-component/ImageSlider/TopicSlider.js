@@ -1,15 +1,31 @@
-import { Box } from '@mui/material'
-import React from 'react'
-import slider1 from '../../../src/assets/images/topic01.png'
-// import slider2 from '../../../src/assets/images/topic02.png'
-// import slider3 from '../../../src/assets/images/topic03.png'
-
-const TopicSlider = () => {
+import { Box, Typography } from '@mui/material';
+import React from 'react';
+import Rectangle from '../../assets/images/slidercover.png';
+const TopicSlider = ({ title }) => {
   return (
-    <Box>
-        <img src={slider1} alt="slider1" style={{ width: "100%", height: "auto", borderRadius: '10px' }} />
-    </Box>
-  )
-}
+    <Box
+      sx={{
+        backgroundImage: `url(${Rectangle})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        width: '100%',
+        height: '100%',
+        borderRadius: '10px',
+        p: 2
+      }}
+    >
+      <Typography variant="h4" sx={{ fontWeight: 700, fontSize: '32px', color: '#fff', mt: 4 }}>
+        {title}
+      </Typography>
+      <Typography variant="h4" sx={{ fontWeight: 700, fontSize: '32px', color: '#fff' }}>
+        Course
+      </Typography>
 
-export default TopicSlider
+      <Typography variant="h4" sx={{ fontWeight: 200, fontSize: '14px', color: '#fff', width: '60%', mt: 3 }}>
+        The course is for beginners. It will interest for people who like {title}.
+      </Typography>
+    </Box>
+  );
+};
+
+export default TopicSlider;
