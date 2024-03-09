@@ -15,7 +15,7 @@ const Chapter = () => {
         {/* BIOLOGY TOPIC START  */}
         <Grid item xs={12} md={12} lg={12}>
           <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-            Cell Biolology
+          Identify and Manage Emotions
           </Typography>
           <Grid container spacing={2}>
             <Grid item xs={6}>

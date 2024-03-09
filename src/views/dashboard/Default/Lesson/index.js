@@ -8,20 +8,20 @@ import { gridSpacing } from 'store/constant';
 import lesson2 from '../../../../assets/images/lesson2.png';
 
 //IMPORT LESSONS PICTURES
-import lessonicon01 from '../../../../assets/images/lessonicon01.png';
+import lessonicon01 from '../../../../assets/images/emotion.jpeg';
 import lessonicon02 from '../../../../assets/images/lessonicon02.png';
 import lessonicon03 from '../../../../assets/images/lessonicon03.png';
 import lessonicon04 from '../../../../assets/images/lessonicon04.png';
 const Lesson = () => {
   const lessonData = [
-    { name: 'Cell Biology', color: '#FF5C5C' , icon: lessonicon01}, // Red
-  { name: 'Genetics', color: '#4CAF50', icon: lessonicon03 }, // Green
-  { name: 'Ecology', color: '#2196F3', icon: lessonicon02 }, // Blue
-  { name: 'Biochemistry', color: '#9C27B0', icon: lessonicon04 }, // Purple
-  { name: 'Anatomy', color: '#FF7043', icon: lessonicon03 }, // Cream
-  { name: 'Physiology', color: '#4DD0E1', icon: lessonicon02 }, // Light Blue
-  { name: 'Microbiology', color: '#FFCA28', icon: lessonicon04 }, // Amber
-  { name: 'Genomics', color: '#E91E63', icon: lessonicon01 }, // Pink
+    { name: 'Identify and Manage Emotions', color: '#d9b384' , icon: lessonicon01}, // Red
+  { name: 'Recognize Sources of Stress and Cope', color: '#4CAF50', icon: lessonicon03 }, // Green
+  { name: 'Maintain positive motivation and perseverance', color: '#2196F3', icon: lessonicon02 }, // Blue
+  { name: 'Relationships and Communicate Effectively', color: '#9C27B0', icon: lessonicon04 }, // Purple
+  { name: 'Develop Self-Awareness and Sense of Identity', color: '#FF7043', icon: lessonicon03 }, // Cream
+  { name: 'Think Critically and Creatively', color: '#4DD0E1', icon: lessonicon02 }, // Light Blue
+  // { name: 'Microbiology', color: '#FFCA28', icon: lessonicon04 }, // Amber
+  // { name: 'Genomics', color: '#E91E63', icon: lessonicon01 }, // Pink
   ];
   
   const getColorForLesson = (lessonName) => {
@@ -56,8 +56,8 @@ const Lesson = () => {
               </Typography>
               {/* STARTING CONTAINER  */}
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '28px', color: '#000000AB', mb: 2 }}>
-                  Animal Cell
+                <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '24px', color: '#000000AB', mb: 2 }}>
+                  SEL in Mathematics Education
                 </Typography>
                 <Box>
                   <img src={savage} alt="savage" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />

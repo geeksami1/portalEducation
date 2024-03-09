@@ -64,7 +64,7 @@ const Logo = () => {
     //   />
     // </svg>
     <>
-      <h1 style={{ color: theme.palette.primary.main }}>EDUCATION</h1>
+      <h1 style={{ color: theme.palette.primary.main }}>Classerly</h1>
     </>
   );
 };

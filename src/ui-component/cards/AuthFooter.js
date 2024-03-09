@@ -9,7 +9,7 @@ const AuthFooter = () => (
       <></>
     </Typography>
     <Typography variant="subtitle2" component={Link} href="https://codedthemes.com" target="_blank" underline="hover">
-      &copy; education.com
+      &copy; classerly.com
     </Typography>
   </Stack>
 );

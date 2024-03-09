@@ -5,33 +5,33 @@ import subject6 from '../../../../../src/assets/images/Frame 102.png';
 import TopicSlider from 'ui-component/ImageSlider/TopicSlider';
 import PremiumTopics from 'ui-component/cards/Topics/PremiumTopics';
 //PREMIUM
-import premium01 from '../../../../assets/images/premium01.png';
-import premium02 from '../../../../assets/images/premium02.png';
-import premium03 from '../../../../assets/images/premium03.png';
+import premium01 from '../../../../assets/images/sel.jpeg';
+import premium02 from '../../../../assets/images/number.jpeg';
+import premium03 from '../../../../assets/images/pattern.jpeg';
 import TopicsTableUi from 'ui-component/table/TopicsTableUi';
-import img1 from '../../../../assets/images/tableui1.png';
-import TableTopics from 'ui-component/table/TableTopics';
+// import img1 from '../../../../assets/images/tableui1.png';
+// import TableTopics from 'ui-component/table/TableTopics';
 const data = [
-  { topic: 'SEL in Mathematics Education', difficulty: 'Easy', lessons: 5, practice: 10, quiz: 3, status: 'Completed', backgroundColor: '#c77195', icon: img1 },
+  { topic: 'SEL in Mathematics Education', difficulty: 'Easy', lessons: 5, practice: 10, quiz: 3, status: 'Completed', backgroundColor: '#FFD1DF', icon: premium01 },
   {
-    topic: 'Topic 2',
+    topic: 'Number Sense',
     difficulty: 'Medium',
     lessons: 7,
     practice: 15,
     quiz: 5,
     status: 'In Progress',
-    backgroundColor: '#ADD8E6',
-    icon: img1
+    backgroundColor: '#C3FFED',
+    icon: premium02
   },
   {
-    topic: 'Topic 3',
+    topic: 'Patterning and Relationships',
     difficulty: 'Hard',
     lessons: 10,
     practice: 20,
     quiz: 8,
     status: 'Not Started',
-    backgroundColor: '#90EE90',
-    icon: img1
+    backgroundColor: '#D1FFBD',
+    icon: premium03
   }
 ];
 const Topics = () => (
@@ -57,17 +57,17 @@ const Topics = () => (
               <Box sx={{ width: '100%' }}>
                 <PremiumTopics
                   image={premium01}
-                  title={'SEL in Mathematics Education'}
-                  desc={'social-emotional learning skills within the context of mathematics teaching and learning.'}
+                  title={'SEL in Mathematics'}
+                  desc={'"Integrating SEL skills into math education for holistic student growth."'}
                 />
                 <PremiumTopics
                   image={premium02}
-                  title={'Cell Structure'}
+                  title={'Number Sense'}
                   desc={'It is the structural and functional unit of a living organism.'}
                 />
                 <PremiumTopics
                   image={premium03}
-                  title={'Cell Structure'}
+                  title={'Patterning and Relationships'}
                   desc={'It is the structural and functional unit of a living organism.'}
                 />
               </Box>

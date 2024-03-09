@@ -50,7 +50,7 @@ const ForgotPassword = () => {
                               display: 'inline-block' // Ensuring the background covers the text
                             }}
                           >
-                            EDUCATION
+                            Classerly
                           </Typography>
                           {/* <Typography
                             variant="caption"

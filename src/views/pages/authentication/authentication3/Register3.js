@@ -50,7 +50,7 @@ const Register = () => {
                               display: 'inline-block' // Ensuring the background covers the text
                             }}
                           >
-                            EDUCATION
+                            Classerly
                           </Typography>
                           {/* <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
                               Enter your credentials to continue
