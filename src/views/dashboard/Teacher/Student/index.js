@@ -6,6 +6,7 @@ import teacherstudent1 from '../../../../assets/images/teacherstudent1.png';
 import teacherstudent2 from '../../../../assets/images/teacherstudent2.png';
 import teacherstudent3 from '../../../../assets/images/teacherstudent3.png';
 import teacherstudent4 from '../../../../assets/images/teacherstudent4.png';
+import Leaderboard from 'ui-component/cards/TeachingStudents/Leaderboard';
 const studentdata = [
   {
     id: 1,
@@ -103,6 +104,7 @@ const Student = () => {
       <Grid item xs={12} sm={4}>
         {/* Your leadership list content */}
         {/* <TeachingStudentsCard isLoading={isLoading} /> */}
+        <Leaderboard />
       </Grid>
     </Grid>
   );

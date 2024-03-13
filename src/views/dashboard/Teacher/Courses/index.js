@@ -52,6 +52,7 @@ const Course = () => {
     <>
       <Grid container spacing={gridSpacing}>
         <Grid item xs={8}>
+          {/* NEW COURSES */}
           <Grid container spacing={gridSpacing}>
             {/* NEW COURSES CARD START */}
             <Grid item lg={12} md={8} sm={8} xs={12}>
@@ -71,21 +72,25 @@ const Course = () => {
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={4}>
-          <Grid container spacing={gridSpacing}>
-            <Grid item xs={12} md={12}>
-              <ProfileProgress value={90} isLoading={isLoading} />
+
+          {/* MY COURSES AND ACTIVITY */}
+          <Grid item xs={12} mt={4}>
+            <Grid container spacing={gridSpacing}>
+              <Grid item xs={12} md={7}>
+                <MyCourses courses={courses} isLoading={isLoading} />
+              </Grid>
+              <Grid item xs={12} md={5}>
+                <ActivityCourse />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={8}>
+
+        {/* PROFILE PROGRESS */}
+        <Grid item xs={4} mt={8}>
           <Grid container spacing={gridSpacing}>
-            <Grid item xs={12} md={6}>
-              <MyCourses courses={courses} isLoading={isLoading} />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <ActivityCourse />
+            <Grid item xs={12} md={12}>
+              <ProfileProgress value={90} isLoading={isLoading} />
             </Grid>
           </Grid>
         </Grid>

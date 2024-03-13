@@ -1,6 +1,6 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
-
+import logo from "../../src/assets/images/classerly-logo.png";
 /**
  * if you want to use image instead of <svg> uncomment following.
  *
@@ -64,7 +64,8 @@ const Logo = () => {
     //   />
     // </svg>
     <>
-      <h1 style={{ color: theme.palette.primary.main }}>Classerly</h1>
+      <img style={{ width: "50px", height: "50px", objectFit: "contain" }} src={logo} alt="logo" />
+      <h1 style={{ color: "#4640e0" , fontSize: "1.5rem" }}>Classerly</h1>
     </>
   );
 };
