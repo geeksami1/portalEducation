@@ -6,7 +6,11 @@
   padding: 20px;
   position: relative;
   box-sizing: border-box;
-  height: 520px;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+flex-direction: column;
 
   .quiz-card-header {
     display: flex;
@@ -46,12 +50,14 @@
     padding: 20px;
     width: 60%;
     height: 400px;
-
+ 
     .result {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      margin-top: 50px;
+     
       .result-header {
         font-size: 28px;
       }

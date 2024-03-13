@@ -36,22 +36,22 @@ const dashboard2 = {
         icon: icons.IconDashboard,
         breadcrumbs: false
       },
-      {
-        id: 'feedback',
-        title: 'Feedback',
-        type: 'item',
-        url: '/dashboard/feedback',
-        icon: icons.IconDashboard,
-        breadcrumbs: false  
-      },
-      {
-        id:'setting',
-        title: 'Setting',
-        type: 'item',
-        url: '/dashboard/setting',
-        icon: icons.IconDashboard,
-        breadcrumbs: false
-      }
+      // {
+      //   id: 'feedback',
+      //   title: 'Feedback',
+      //   type: 'item',
+      //   url: '/dashboard/feedback',
+      //   icon: icons.IconDashboard,
+      //   breadcrumbs: false  
+      // },
+      // {
+      //   id:'setting',
+      //   title: 'Setting',
+      //   type: 'item',
+      //   url: '/dashboard/setting',
+      //   icon: icons.IconDashboard,
+      //   breadcrumbs: false
+      // }
     
   ]
 };

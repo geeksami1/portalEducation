@@ -128,7 +128,10 @@ const QuizCard = ({ questions }) => {
               <AnswerTimer duration={30} onTimeUp={handleTimeUp} />
             </>
           ) : (
-           !timeUp && <Box className="result">
+           !timeUp && (
+            <>
+          
+           <Box className="result">
               <Typography variant="h6" gutterBottom className="result-header">
                 Result 🎉
               </Typography>
@@ -150,9 +153,14 @@ const QuizCard = ({ questions }) => {
                 Try again
               </Button>
             </Box>
+            
+            
+            </>
+            )
           )}
           {timeUp && (
-            <Box className="result2" >
+            
+            <Box className="result2">
               <Typography variant="h6" gutterBottom className="result-header" style={{marginTop: '20%'}} >
                 Duration has ended ⏰
               </Typography>
