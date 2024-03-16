@@ -6,6 +6,7 @@ import Quiz from 'views/dashboard/Default/Quiz';
 // import Loadable from 'ui-component/Loadable';
 import TeacherDashboard from 'views/dashboard/Teacher';
 import Courses from 'views/dashboard/Teacher/Courses';
+import Feedback from 'views/dashboard/Teacher/Feedback';
 import Student from 'views/dashboard/Teacher/Student';
 
 
@@ -70,6 +71,15 @@ const TeacherRoutes = {
           element: <Quiz />
         }
       ]
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'feedback',
+          element: <Feedback />
+        }
+      ] 
     }
 
 

@@ -13,12 +13,17 @@ import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
 import MenuCard from './MenuCard';
 import { drawerWidth } from 'store/constant';
+import MenuItemss from 'layout/MenuItemss/Menuitemss';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  const userrole = user && user.role
+  console.log("🚀 ~ Sidebar ~ userrole:", userrole)
 
   const drawer = (
     <>
@@ -36,7 +41,9 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             paddingRight: '16px'
           }}
         >
-          <MenuList />  
+
+          {/* <MenuList  userrole={userrole}/> */}
+          <MenuItemss userrole={userrole} />
           {/* <MenuCard /> */}
           {/* <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
             <Chip label={process.env.REACT_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />

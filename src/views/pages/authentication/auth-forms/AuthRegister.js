@@ -112,7 +112,7 @@ const Register = ({ ...others }) => {
             if (user?.userRole === 'teacher') {
               navigate('/dashboard/teacher');
             } else if (user?.userRole === 'student') {
-              navigate('/');
+              navigate('/dashboard/default');
             }
             if (scriptedRef.current) {
               setStatus({ success: true });

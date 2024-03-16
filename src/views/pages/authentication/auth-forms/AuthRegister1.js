@@ -61,7 +61,7 @@ const AuthRegister1 = () => {
       dispatch(setUser(values));
       //   CONDITIONALLY DEAL WITH THE REDIRECT IF USER ROLE IS STUDENT THEN GO TO STUDENT DASHBOARD ELSE GO TO TEACHER DASHBOARD
       if (values.role === 'student') {
-        navigate('/dashboard/default');
+        navigate('/');
       } else {
         navigate('/dashboard/teacher');
       }

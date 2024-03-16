@@ -20,6 +20,7 @@ import TeachingTable from 'ui-component/cards/Teaching/TeachingTable';
 import TeachingCourse from 'ui-component/cards/Teaching/TeachingCourse';
 import teachercourse from '../../../assets/images/teachercourse.png';
 import TeacherTask from 'ui-component/cards/Teaching/TeacherTask';
+import TeachingSchedule from 'ui-component/cards/Teaching/TeachingSchedule';
 // ==============================|| DEFAULT TeacherDashboard ||============================== //
 
 const TeacherDashboard = () => {
@@ -93,9 +94,10 @@ const TeacherDashboard = () => {
           {/* TEACHING HOMEWORK CARD END */}
           <Grid item lg={4} md={12} sm={12} xs={12}>
             <Grid container spacing={gridSpacing}>
-              {/* <Grid item sm={6} xs={12} md={6} lg={12}>
-                <TotalIncomeDarkCard isLoading={isLoading} />
-              </Grid> */}
+              <Grid item sm={6} xs={12} md={6} lg={12}>
+                {/* <TotalIncomeDarkCard isLoading={isLoading} /> */}
+                <TeachingSchedule />
+              </Grid>
               {/* <Grid item sm={6} xs={12} md={6} lg={12}>
                 <TotalIncomeLightCard isLoading={isLoading} />
               </Grid> */}

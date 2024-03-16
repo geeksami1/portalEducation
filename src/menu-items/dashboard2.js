@@ -10,10 +10,10 @@ const icons = { IconDashboard, IconSettings, IconBook, IconFileText };
 const dashboard2 = {
   id: 'dashboard2',
   
-  type: 'group',
+  type: 'group2',
   children: [
     {
-      id: 'default',
+      id: 'teacher',
       title: 'Dashboard',
       type: 'item',
       url: '/dashboard/teacher',
@@ -36,14 +36,14 @@ const dashboard2 = {
         icon: icons.IconDashboard,
         breadcrumbs: false
       },
-      // {
-      //   id: 'feedback',
-      //   title: 'Feedback',
-      //   type: 'item',
-      //   url: '/dashboard/feedback',
-      //   icon: icons.IconDashboard,
-      //   breadcrumbs: false  
-      // },
+      {
+        id: 'feedback',
+        title: 'Feedback',
+        type: 'item',
+        url: '/dashboard/feedback',
+        icon: icons.IconDashboard,
+        breadcrumbs: false  
+      },
       // {
       //   id:'setting',
       //   title: 'Setting',

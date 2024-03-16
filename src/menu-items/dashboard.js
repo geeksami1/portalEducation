@@ -9,7 +9,7 @@ const icons = { IconDashboard, IconSettings, IconBook, IconFileText };
 const dashboard = {
   id: 'dashboard',
   // title: <span style={{ color: 'white' }}>Student</span>,
-  type: 'group',
+  type: 'group1',
   children: [
     {
       id: 'default',
