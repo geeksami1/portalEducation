@@ -3,7 +3,8 @@ import React from 'react';
 import avatarcourse from '../../../../src/assets/images/avatarcourse.png';
 import feedback1 from '../../../../src/assets/images/feedback1.png';
 import feedback2 from '../../../../src/assets/images/feedback2.png';
-
+// IMPORT STAR  FROM MUI ICONS
+import StarIcon from '@mui/icons-material/Star';
 const FeedbackProfile = () => {
   return (
     <Box>
@@ -31,14 +32,14 @@ const FeedbackProfile = () => {
           </Box>
           {/* ADD A LINE BREAK  */}
           <Box sx={{ borderBottom: '2px solid rgba(0, 0, 0, 0.12)', width: '100%' }}></Box>
-          
+
           {/* FEEDBACK IMAGE AND GRADE */}
           <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
             {/* Feedback Image (Aligned to the left) */}
             <Box sx={{ flex: '0 0 auto', marginRight: '16px' }}>
               <img src={feedback2} alt="feedback2" style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '10px' }} />
             </Box>
-            
+
             {/* Grade (Centered horizontally) */}
             <Box sx={{ flex: '1', textAlign: 'center' }}>
               <Typography variant="h4" sx={{ my: 2, fontWeight: 500, fontSize: '14px', color: '#BE7885' }}>
@@ -50,7 +51,54 @@ const FeedbackProfile = () => {
       </Card>
 
       {/* BOTTOM BOX  */}
-      <Box></Box>
+      <Box mt={4}>
+        <Card sx={{ backgroundColor: '#ffffff', width: '100%', borderRadius: '10px', p: 2 }}>
+          <Typography variant="h4" sx={{ textAlign: 'center', mb: 2, fontWeight: 500, fontSize: '18px', color: 'rgba(0, 0, 0, 0.85)' }}>
+            Rating on Your Profile
+          </Typography>
+          <Box sx={{ borderBottom: '2px solid rgba(0, 0, 0, 0.12)', width: '100%' }}></Box>
+
+          {/* Rating */}
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', mt:4, p:2, backgroundColor: 'rgba(0, 0, 0, 0.04)' , borderRadius: '10px'}}>
+            <Typography variant="h4" sx={{ fontWeight: 500, fontSize: '14px', color: 'rgba(0, 0, 0, 0.54)' }}>
+            {/* STARS  */}
+            {
+              Array(5).fill().map((_, i) => (
+                <StarIcon key={i} sx={{ color: '#FFC107' }} />
+              ))
+            }
+            </Typography>
+            <Typography variant="h4" sx={{ fontWeight: 500, fontSize: '14px', color: 'rgba(0, 0, 0, 0.54)' }}>
+              4.7 out of 5
+            </Typography>
+          </Box>
+
+          {/* TEXT  */}
+
+          <Typography variant="h4" sx={{ fontWeight: 400, fontSize: '14px', color: 'rgba(0, 0, 0, 0.54)' }}>
+            40+ Parent and Teacher reviews
+          </Typography>
+
+            {/* EACH STAR SOME SORT OF PERCENT */}
+          <Box>
+
+              {/* 5 Star  */}
+
+              <Box>
+                <Typography variant="h4" sx={{ fontWeight: 500, fontSize: '14px', color: 'rgba(0, 0, 0, 0.54)' }}>
+                  5 Star
+                </Typography>
+              {/* now use a progress bar  */}
+
+              <Box> 
+              
+              </Box>
+              </Box>
+
+          </Box>
+          
+        </Card>
+      </Box>
     </Box>
   );
 };

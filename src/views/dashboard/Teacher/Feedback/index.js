@@ -5,7 +5,7 @@ import FeedbackProfile from 'ui-component/cards/Feedback/FeedbackProfile';
 const Feedback = () => {
   return (
     <Grid container spacing={gridSpacing}>
-      <Grid item xs={4} md={4} lg={4}>
+      <Grid item xs={12} md={4} lg={4}>
         <FeedbackProfile />
       </Grid>
     </Grid>

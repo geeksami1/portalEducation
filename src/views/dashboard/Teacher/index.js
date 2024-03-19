@@ -67,16 +67,16 @@ const TeacherDashboard = () => {
       <Grid item xs={12}>
         {/* TEACHING DATA CARD START */}
         <Grid container spacing={gridSpacing}>
-          <Grid item lg={3} md={3} sm={3} xs={3}>
+          <Grid item lg={3} md={3} sm={12} xs={12}>
             <TeachingData color={'#7F49F2'} title={'Total Students'} number={'20'} img={img1} />
           </Grid>
-          <Grid item lg={3} md={3} sm={3} xs={3}>
+          <Grid item lg={3} md={3} sm={12} xs={12}>
             <TeachingData color={'#E9C030'} title={'Total Subjects'} number={'6'} img={img2} />
           </Grid>
-          <Grid item lg={3} md={3} sm={3} xs={3}>
+          <Grid item lg={3} md={3} sm={12} xs={12}>
             <TeachingData color={'#EA794A'} title={'Total Quizzes'} number={'25'} img={img4} />
           </Grid>
-          <Grid item lg={3} md={3} sm={3} xs={3}>
+          <Grid item lg={3} md={3} sm={12} xs={12}>
             <TeachingData color={'#3BC6DF'} title={'Total Class'} number={'25'} img={img3} />
           </Grid>
         </Grid>

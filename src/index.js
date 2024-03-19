@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import * as serviceWorker from 'serviceWorker';
+// import * as serviceWorker from 'serviceWorker';
 import App from 'App';
 import { store } from 'store';
 
@@ -20,4 +20,4 @@ root.render(
   </Provider>
 );
 
-serviceWorker.unregister();
+// serviceWorker.unregister();
