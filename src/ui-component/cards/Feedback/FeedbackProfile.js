@@ -5,6 +5,7 @@ import feedback1 from '../../../../src/assets/images/feedback1.png';
 import feedback2 from '../../../../src/assets/images/feedback2.png';
 // IMPORT STAR  FROM MUI ICONS
 import StarIcon from '@mui/icons-material/Star';
+import FeedbackStar from './FeedbackStar';
 const FeedbackProfile = () => {
   return (
     <Box>
@@ -53,20 +54,33 @@ const FeedbackProfile = () => {
       {/* BOTTOM BOX  */}
       <Box mt={4}>
         <Card sx={{ backgroundColor: '#ffffff', width: '100%', borderRadius: '10px', p: 2 }}>
-          <Typography variant="h4" sx={{ textAlign: 'center', mb: 2, fontWeight: 500, fontSize: '18px', color: 'rgba(0, 0, 0, 0.85)' }}>
+          <Typography variant="h4" sx={{ textAlign: 'center', mb: 2, fontWeight: 500,
+          marginTop:3,
+          fontSize: '18px', color: 'rgba(0, 0, 0, 0.85)' }}>
             Rating on Your Profile
           </Typography>
           <Box sx={{ borderBottom: '2px solid rgba(0, 0, 0, 0.12)', width: '100%' }}></Box>
 
           {/* Rating */}
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', mt:4, p:2, backgroundColor: 'rgba(0, 0, 0, 0.04)' , borderRadius: '10px'}}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              mt: 4,
+              p: 2,
+              backgroundColor: 'rgba(0, 0, 0, 0.04)',
+              borderRadius: '10px'
+            }}
+          >
             <Typography variant="h4" sx={{ fontWeight: 500, fontSize: '14px', color: 'rgba(0, 0, 0, 0.54)' }}>
-            {/* STARS  */}
-            {
-              Array(5).fill().map((_, i) => (
-                <StarIcon key={i} sx={{ color: '#FFC107' }} />
-              ))
-            }
+              {/* STARS  */}
+              {Array(5)
+                .fill()
+                .map((_, i) => (
+                  <StarIcon key={i} sx={{ color: '#FFC107' }} />
+                ))}
             </Typography>
             <Typography variant="h4" sx={{ fontWeight: 500, fontSize: '14px', color: 'rgba(0, 0, 0, 0.54)' }}>
               4.7 out of 5
@@ -75,28 +89,48 @@ const FeedbackProfile = () => {
 
           {/* TEXT  */}
 
-          <Typography variant="h4" sx={{ fontWeight: 400, fontSize: '14px', color: 'rgba(0, 0, 0, 0.54)' }}>
+          <Typography
+            variant="h4"
+            my={4}
+            sx={{
+              textAlign: 'center',
+              fontWeight: 400,
+              fontSize: '14px',
+              color: 'rgba(0, 0, 0, 0.54),'
+            }}
+          >
             40+ Parent and Teacher reviews
           </Typography>
 
-            {/* EACH STAR SOME SORT OF PERCENT */}
-          <Box>
-
-              {/* 5 Star  */}
-
-              <Box>
-                <Typography variant="h4" sx={{ fontWeight: 500, fontSize: '14px', color: 'rgba(0, 0, 0, 0.54)' }}>
-                  5 Star
-                </Typography>
-              {/* now use a progress bar  */}
-
-              <Box> 
-              
-              </Box>
-              </Box>
-
+          {/* EACH STAR SOME SORT OF PERCENT */}
+          <Box
+            my={4}
+            sx={{
+              mx: 'auto',
+              width: '80%'
+            }}
+          >
+            <FeedbackStar star={5} percentage={84} />
+            <FeedbackStar star={4} percentage={9} />
+            <FeedbackStar star={3} percentage={4} />
+            <FeedbackStar star={2} percentage={2} />
+            <FeedbackStar star={1} percentage={1} />
           </Box>
-          
+
+          {/* HOW DO WE CALCULATE RATINGSS */}
+
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: 'center',
+              fontWeight: 500,
+              fontSize: '14px',
+              color: '#0674F8',
+              mb: 3
+            }}
+          >
+            How do we calculate ratings?
+          </Typography>
         </Card>
       </Box>
     </Box>

@@ -1,16 +1,8 @@
 import { useEffect } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-// project imports
-// import EarningCard from './EarningCard';
-// import PopularCard from './PopularCard';
-// import TotalOrderLineChartCard from './TotalOrderLineChartCard';
-// import TotalIncomeDarkCard from './TotalIncomeDarkCard';
-// import TotalIncomeLightCard from './TotalIncomeLightCard';
-// import TotalGrowthBarChart from './TotalGrowthBarChart';
 import { gridSpacing } from 'store/constant';
 import IntroCard from './IntroCard';
 import SubjectBox from './SubjectBox';
-
 //IMAGE SUBJECT IMPORTS
 import subject1 from '../../../../src/assets/images/Frame 100.png';
 import subject2 from '../../../../src/assets/images/subject2.png';
@@ -45,8 +37,8 @@ const Dashboard = () => {
             {/* ===========================================SUBJECTS SECTION START ======================================= */}
             <Grid item xs={12} mt={6}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography variant="h2" my={4} sx={{color: '#00000082'}}>
-                  Subjects <span style={{ fontSize: 10 , color: '#00000082' }}>(class three)</span>{' '}
+                <Typography variant="h2" my={4} sx={{ color: '#00000082' }}>
+                  Subjects <span style={{ fontSize: 10, color: '#00000082' }}>(class three)</span>{' '}
                 </Typography>
                 <Box>
                   <SeeMore />
@@ -57,13 +49,13 @@ const Dashboard = () => {
                   <SubjectBox img={subject1} title="Mathematics" bgColor="#3bc6df" />
                 </Grid>
 
-                <Grid item xs={6}  md={3} lg={3}>
+                <Grid item xs={6} md={3} lg={3}>
                   <SubjectBox img={subject2} title="Physics" bgColor="#7A3FF7" />
                 </Grid>
-                <Grid item xs={6}  md={3} lg={3}>
+                <Grid item xs={6} md={3} lg={3}>
                   <SubjectBox img={subject3} title="English" bgColor="#D54041" />
                 </Grid>
-                <Grid item xs={6}  md={3} lg={3}>
+                <Grid item xs={6} md={3} lg={3}>
                   <SubjectBox img={subject4} title="Biology" bgColor="#56CD78" />
                 </Grid>
               </Grid>
@@ -74,7 +66,7 @@ const Dashboard = () => {
 
           {/* ===========================================QUIZ TOPICS START ======================================= */}
           <Grid item lg={4} md={12} sm={12} xs={12}>
-            <Typography variant="h2" my={4} sx={{color: '#00000082'}}>
+            <Typography variant="h2" my={4} sx={{ color: '#00000082' }}>
               Quiz Topics
             </Typography>
             <Grid container spacing={2}>
@@ -160,7 +152,7 @@ const Dashboard = () => {
               <Grid item sm={6} xs={12} md={6} lg={12}>
                 {/* <TotalIncomeDarkCard isLoading={isLoading} /> */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Typography variant="h2"  sx={{ color: '#00000082' }}>
+                  <Typography variant="h2" sx={{ color: '#00000082' }}>
                     Timeline
                   </Typography>
                   <Box>
@@ -186,20 +178,20 @@ const Dashboard = () => {
           </Grid>
         </Grid>
       </Grid>
-           {/* ==================================================TIME LINE SECTION END===================================== */}
+      {/* ==================================================TIME LINE SECTION END===================================== */}
       <Grid item xs={12}>
         <Grid container spacing={gridSpacing}>
-          <Grid item xs={12} md={8 } my={-6}>
+          <Grid item xs={12} md={8} my={-6}>
             {/* <TotalGrowthBarChart isLoading={isLoading} /> */}
-                 {/* ==================================================TABLE===================================== */}
-            <Typography variant="h2" my={2}  sx={{ color: '#00000082' }}>
+            {/* ==================================================TABLE===================================== */}
+            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
               Your Achievements
             </Typography>
             <SpanningTable />
           </Grid>
           <Grid item xs={12} md={4}>
             {/* <PopularCard isLoading={isLoading} /> */}
-                {/* ==================================================HIRING CARD===================================== */}
+            {/* ==================================================HIRING CARD===================================== */}
             <Box sx={{ backgroundColor: 'background.paper', borderRadius: 5 }}>
               <HiringCard />
             </Box>
@@ -208,28 +200,28 @@ const Dashboard = () => {
       </Grid>
       <Grid item xs={12}>
         {/*================================================= UPCOMING EVENTS =====================================  */}
-      <Grid container spacing={gridSpacing}>
-        <Grid item xs={12} md={12} my={-12}>
-          <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-            Upcoming Events
-          </Typography>
-          <Grid container spacing={gridSpacing}>
-            <Grid item xs={12} sm={6} md={3}>
-              <ImageSlider title={"Cooking"}/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <ImageSlider  title={"Debate"} />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <ImageSlider  title={"Drama"}/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <ImageSlider  title={"SportDay"}/>
+        <Grid container spacing={gridSpacing}>
+          <Grid item xs={12} md={12} my={-12}>
+            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
+              Upcoming Events
+            </Typography>
+            <Grid container spacing={gridSpacing}>
+              <Grid item xs={12} sm={6} md={3}>
+                <ImageSlider title={'Cooking'} />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <ImageSlider title={'Debate'} />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <ImageSlider title={'Drama'} />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <ImageSlider title={'SportDay'} />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
     </Grid>
   );
 };

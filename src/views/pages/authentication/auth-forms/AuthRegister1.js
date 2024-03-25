@@ -60,10 +60,21 @@ const AuthRegister1 = () => {
       localStorage.setItem('user', JSON.stringify(values));
       dispatch(setUser(values));
       //   CONDITIONALLY DEAL WITH THE REDIRECT IF USER ROLE IS STUDENT THEN GO TO STUDENT DASHBOARD ELSE GO TO TEACHER DASHBOARD
-      if (values.role === 'student') {
-        navigate('/');
-      } else {
-        navigate('/dashboard/teacher');
+      // if (values.role === 'student') {
+      //   navigate('/');
+      // } else {
+      //   navigate('/dashboard/teacher');
+      // }
+      switch (values.role) {
+        case 'student':
+          navigate('/');
+          break;
+        case 'parent':
+          navigate('/dashboard/parent');
+          break;
+        default:
+          navigate('/dashboard/teacher');
+          break;
       }
     }
   });

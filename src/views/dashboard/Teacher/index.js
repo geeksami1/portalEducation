@@ -1,16 +1,6 @@
 import { useEffect, useState } from 'react';
-
-// material-ui
 import { Grid, Typography } from '@mui/material';
-
-// project imports
-
 import { gridSpacing } from 'store/constant';
-// import EarningCard from '../Default/EarningCard';
-// import TotalOrderLineChartCard from '../Default/TotalOrderLineChartCard';
-import TotalIncomeDarkCard from '../Default/TotalIncomeDarkCard';
-import TotalIncomeLightCard from '../Default/TotalIncomeLightCard';
-// import TotalGrowthBarChart from '../Default/TotalGrowthBarChart';
 import TeachingData from 'ui-component/cards/Teaching/TeachingData';
 import img1 from '../../../assets/images/teacher1.png';
 import img2 from '../../../assets/images/teacher3.png';
@@ -21,7 +11,6 @@ import TeachingCourse from 'ui-component/cards/Teaching/TeachingCourse';
 import teachercourse from '../../../assets/images/teachercourse.png';
 import TeacherTask from 'ui-component/cards/Teaching/TeacherTask';
 import TeachingSchedule from 'ui-component/cards/Teaching/TeachingSchedule';
-// ==============================|| DEFAULT TeacherDashboard ||============================== //
 
 const TeacherDashboard = () => {
   const [isLoading, setLoading] = useState(true);
@@ -82,49 +71,56 @@ const TeacherDashboard = () => {
         </Grid>
         {/* TEACHING DATA CARD END */}
       </Grid>
-      <Grid item xs={12}>
-        <Grid container spacing={gridSpacing}>
-          {/* TEACHING HOMEWORK CARD START */}
-          <Grid item lg={8} md={8} sm={8} xs={12}>
-            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-              Pending homework
-            </Typography>
-            <TeachingTable data={data} isLoading={isLoading} />
-          </Grid>
-          {/* TEACHING HOMEWORK CARD END */}
-          <Grid item lg={4} md={12} sm={12} xs={12}>
-            <Grid container spacing={gridSpacing}>
-              <Grid item sm={6} xs={12} md={6} lg={12}>
-                {/* <TotalIncomeDarkCard isLoading={isLoading} /> */}
-                <TeachingSchedule />
-              </Grid>
-              {/* <Grid item sm={6} xs={12} md={6} lg={12}>
-                <TotalIncomeLightCard isLoading={isLoading} />
-              </Grid> */}
+
+      <Grid item xs={12} md={8}>
+        <Grid item xs={12}>
+          <Grid container spacing={gridSpacing}>
+            <Grid item xs={12} md={6}>
+              <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
+                Courses
+              </Typography>
+              <TeachingCourse
+                img={teachercourse}
+                isLoading={isLoading}
+                title={'Teaching Integrals and Fractional Method'}
+                weeks={5}
+                hours={10}
+                quizes={3}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
+                Tasks
+              </Typography>
+              <TeacherTask isLoading={isLoading} />
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container spacing={gridSpacing}>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-              Courses
-            </Typography>
-            <TeachingCourse
-              img={teachercourse}
-              isLoading={isLoading}
-              title={'Teaching Integrals and Fractional Method'}
-              weeks={5}
-              hours={10}
-              quizes={3}
-            />
+
+        <Grid item xs={12}>
+          <Grid container spacing={gridSpacing}>
+            {/* TEACHING HOMEWORK CARD START */}
+            <Grid item lg={12} md={8} sm={8} xs={12}>
+              <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
+                Pending homework
+              </Typography>
+              <TeachingTable data={data} isLoading={isLoading} />
+            </Grid>
+            {/* TEACHING HOMEWORK CARD END */}
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h2" my={2} sx={{ color: '#00000082' }}>
-              Courses
-            </Typography>
-            <TeacherTask isLoading={isLoading} />
+        </Grid>
+      </Grid>
+
+      <Grid item xs={12} md={4}>
+        <Grid item md={12} sm={12} xs={12}>
+          <Grid container spacing={gridSpacing}>
+            <Grid item sm={6} xs={12} md={6} lg={12}>
+              {/* <TotalIncomeDarkCard isLoading={isLoading} /> */}
+              <TeachingSchedule />
+            </Grid>
+            {/* <Grid item sm={6} xs={12} md={6} lg={12}>
+                <TotalIncomeLightCard isLoading={isLoading} />
+              </Grid> */}
           </Grid>
         </Grid>
       </Grid>
