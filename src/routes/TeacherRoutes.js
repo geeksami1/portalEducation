@@ -1,5 +1,6 @@
 import MainLayout from 'layout/MainLayout';
 import Quiz from 'views/dashboard/Default/Quiz';
+import Settings from 'views/dashboard/Default/Settings';
 import TeacherDashboard from 'views/dashboard/Teacher';
 import Courses from 'views/dashboard/Teacher/Courses';
 import Feedback from 'views/dashboard/Teacher/Feedback';
@@ -68,7 +69,16 @@ const TeacherRoutes = {
         }
       ]
     },
-
+    //Setting
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'setting',
+          element: <Settings />
+        }
+      ]
+    }
 
 
   ]

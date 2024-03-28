@@ -31,12 +31,31 @@ const ParentRoutes = {
       ]
     },
     //MY CHILDRENS
+    // {
+    //   path: 'dashboard',
+    //   children: [
+    //     {
+    //       path: 'children',
+    //       element: <MyChildrens />
+    //     }
+    //   ]
+    // },
     {
       path: 'dashboard',
       children: [
         {
           path: 'children',
-          element: <MyChildrens />
+          element: <MyChildrens />,
+          children: [
+            {
+              path: 'john_doe',
+              element: <MyChildrens />
+            },
+            {
+              path: 'mary_jones',
+              element: <MyChildrens />
+            }
+          ]
         }
       ]
     },

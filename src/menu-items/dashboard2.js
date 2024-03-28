@@ -44,14 +44,14 @@ const dashboard2 = {
         icon: icons.IconDashboard,
         breadcrumbs: false  
       },
-      // {
-      //   id:'setting',
-      //   title: 'Setting',
-      //   type: 'item',
-      //   url: '/dashboard/setting',
-      //   icon: icons.IconDashboard,
-      //   breadcrumbs: false
-      // }
+      {
+        id:'setting',
+        title: 'Setting',
+        type: 'item',
+        url: '/dashboard/setting',
+        icon: icons.IconDashboard,
+        breadcrumbs: false
+      }
     
   ]
 };
