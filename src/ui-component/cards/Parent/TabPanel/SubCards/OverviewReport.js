@@ -4,7 +4,7 @@ import React from 'react';
 const OverviewReport = () => {
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py:5 , borderBottom: '2px solid rgba(0, 0, 0, 0.12)', px:5 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py:5 , borderBottom: '2px solid rgba(0, 0, 0, 0.12)', px:5, borderTop: '2px solid rgba(0, 0, 0, 0.12)' }}>
         {/* LEFT  */}
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           <Typography variant="h2" sx={{ color: 'rgba(0, 0, 0, 0.75)' }}>
