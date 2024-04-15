@@ -12,9 +12,11 @@ import TopicsTableUi from 'ui-component/table/TopicsTableUi';
 // import img1 from '../../../../assets/images/tableui1.png';
 // import TableTopics from 'ui-component/table/TableTopics';
 const data = [
-  { topic: 'SEL in Mathematics Education', difficulty: 'Easy', lessons: 5, practice: 10, quiz: 3, status: 'Completed', backgroundColor: '#FFD1DF', icon: premium01 },
+
+  {  id: 1, topic: 'SEL in Mathematics Education', difficulty: 'Easy', lessons: 5, practice: 10, quiz: 3, status: 'Completed', backgroundColor: '#FFD1DF', icon: premium01 },
   {
-    topic: 'Number Sense',
+    id: 2,
+    topic: 'Number',
     difficulty: 'Medium',
     lessons: 7,
     practice: 15,
@@ -24,7 +26,8 @@ const data = [
     icon: premium02
   },
   {
-    topic: 'Patterning and Relationships',
+    id: 3,
+    topic: 'Algebra',
     difficulty: 'Hard',
     lessons: 10,
     practice: 20,
@@ -32,8 +35,44 @@ const data = [
     status: 'Not Started',
     backgroundColor: '#D1FFBD',
     icon: premium03
+  },
+  {
+    id: 4,
+    topic: 'Data',
+    difficulty: 'Easy',
+    lessons: 5,
+    practice: 10,
+    quiz: 3,
+    status: 'Completed',
+    backgroundColor: '#FFC0CB',
+    icon: premium01
+  
+  },
+  {
+    id: 5,
+    topic: 'Spatial Sense',
+    difficulty: 'Easy',
+    lessons: 5,
+    practice: 10,
+    quiz: 3,
+    status: 'Completed',
+    backgroundColor: '#FFA07A',
+    icon: premium01
+
+  },
+  {
+    id: 6,
+    topic: 'Financial Literacy',
+    difficulty: 'Easy',
+    lessons: 5,
+    practice: 10,
+    quiz: 3,
+    status: 'Completed',
+    backgroundColor: '#87CEEB',
+    icon: premium01
   }
 ];
+
 const Topics = () => (
   <>
     <Grid container spacing={2}>
@@ -67,7 +106,7 @@ const Topics = () => (
                 />
                 <PremiumTopics
                   image={premium03}
-                  title={'Patterning and Relationships'}
+                  title={'Algebra'}
                   desc={'It is the structural and functional unit of a living organism.'}
                 />
               </Box>

@@ -78,7 +78,7 @@ const MainRoutes = {
       path: 'dashboard',
       children: [
         {
-          path: 'topic',
+          path: 'topic/:id',
           element: <Topics />
         }
       ]
@@ -87,7 +87,7 @@ const MainRoutes = {
       path: 'dashboard',
       children: [
         {
-          path: 'lesson',
+          path: 'lesson/:id',
           element: <Lesson />
         }
       ]
