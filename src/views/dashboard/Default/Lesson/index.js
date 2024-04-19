@@ -9,43 +9,86 @@ import lesson2 from '../../../../assets/images/lesson2.png';
 import { useParams } from 'react-router-dom';
 
 //IMPORT LESSONS PICTURES
-import lessonicon01 from '../../../../assets/images/emotion.jpeg';
-import lessonicon02 from '../../../../assets/images/lessonicon02.png';
-import lessonicon03 from '../../../../assets/images/lessonicon03.png';
-import lessonicon04 from '../../../../assets/images/lessonicon04.png';
+// import lessonicon01 from '../../../../assets/images/emotion.jpeg';
+// import lessonicon02 from '../../../../assets/images/lessonicon02.png';
+// import lessonicon03 from '../../../../assets/images/lessonicon03.png';
+// import lessonicon04 from '../../../../assets/images/lessonicon04.png';
+import {
+  ArstLesson1,
+  ArstLesson2,
+  ArstLesson3,
+  ArstLesson4,
+  HealthLesson1,
+  HealthLesson2,
+  HealthLesson3,
+  HealthLesson4,
+  MathematicLesson1,
+  MathematicLesson2,
+  MathematicLesson3,
+  MathematicLesson6,
+  ScienceLesson1,
+  ScienceLesson2,
+  ScienceLesson3,
+  ScienceLesson4,
+  ScienceLesson5,
+  mathematicLesson4,
+  mathematicLesson5
+} from 'utils/lessonData';
 const Lesson = () => {
   const { id } = useParams();
 
   console.log(id);
 
-
-
-  const lessonData1 = [
-    { name: 'Identify and Manage Emotions', color: '#d9b384', icon: lessonicon01 }, // Red
-    { name: 'Recognize Sources of Stress and Cope', color: '#4CAF50', icon: lessonicon03 }, // Green
-    { name: 'Maintain positive motivation and perseverance', color: '#2196F3', icon: lessonicon02 }, // Blue
-    { name: 'Relationships and Communicate Effectively', color: '#9C27B0', icon: lessonicon04 }, // Purple
-    { name: 'Develop Self-Awareness and Sense of Identity', color: '#FF7043', icon: lessonicon03 }, // Cream
-    { name: 'Think Critically and Creatively', color: '#4DD0E1', icon: lessonicon02 } // Light Blue
-    // { name: 'Microbiology', color: '#FFCA28', icon: lessonicon04 }, // Amber
-    // { name: 'Genomics', color: '#E91E63', icon: lessonicon01 }, // Pink
-  ];
-
-  const lessonData2 = [
-    { name: 'Understanding Rational Numbers', color: '#d9b384', icon: lessonicon01 }, // Red
-    { name: 'Representing Integers on Number Lines', color: '#4CAF50', icon: lessonicon03 }, // Green
-    { name: 'Comparing and Ordering Integers, Decimals, and Fractions', color: '#2196F3', icon: lessonicon02 }, // Blue
-    { name: 'Reading, Representing, Comparing, and Ordering Decimal Numbers', color: '#9C27B0', icon: lessonicon04 }, // Purple
-    { name: 'Rounding Decimal Numbers', color: '#FF7043', icon: lessonicon03 }, // Cream
-    { name: 'Relationships and Equivalences among Fractions and Decimals', color: '#4DD0E1', icon: lessonicon02 } // Light Blue
-  ];
-
   const getColorForLesson = (lessonName) => {
     const lesson = selectedLessonData.find((lesson) => lesson.name === lessonName);
-    return lesson ? lesson.color : '#000000'; 
+    return lesson ? lesson.color : '#000000';
   };
 
-  const selectedLessonData = id === '1' ? lessonData1 : lessonData2;
+  const selectedLessonData = (() => {
+    switch (id) {
+      case 'mathematics-sel':
+        return MathematicLesson1;
+      case 'mathematics-number':
+        return MathematicLesson2;
+      case 'mathematics-pattern':
+        return MathematicLesson3;
+      case 'mathematics-data':
+        return mathematicLesson4;
+      case 'mathematics-spatial':
+        return mathematicLesson5;
+      case 'mathematics-financial':
+        return MathematicLesson6;
+      case 'science-stem':
+        return ScienceLesson1;
+      case 'science-life':
+        return ScienceLesson2;
+      case 'science-matter':
+        return ScienceLesson3;
+      case 'science-structure':
+        return ScienceLesson4;
+      case 'science-geography':
+        return ScienceLesson5;
+      case 'arts-dance':
+        return ArstLesson1;
+      case 'arts-drama':
+        return ArstLesson2;
+      case 'arts-music':
+        return ArstLesson3;
+      case 'arts-visual':
+        return ArstLesson4;
+      case 'health-social-emotional':
+        return HealthLesson1;
+      case 'health-active-living':
+        return HealthLesson2;
+      case 'health-movement':
+        return HealthLesson3;
+      case 'health-healthy-living':
+        return HealthLesson4;
+      default:
+        return [];
+    }
+  })();
+
   return (
     <>
       <Grid container spacing={gridSpacing}>
@@ -74,7 +117,8 @@ const Lesson = () => {
                 {/* STARTING CONTAINER  */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '24px', color: '#000000AB', mb: 2 }}>
-                    SEL in Mathematics Education
+                    {/* SEL in Mathematics Education */}
+                    {id}
                   </Typography>
                   <Box>
                     <img src={savage} alt="savage" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />

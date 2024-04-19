@@ -3,8 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const LessonCards = ({ img, title, bgColor }) => {
+  const formattedTitle = title.replace(/\s+/g, '-');
   return (
-   <Link to={`/dashboard/chapter`} style={{ textDecoration: 'none' }}>
+   <Link to={`/dashboard/chapter/${formattedTitle}`} style={{ textDecoration: 'none' }}>
       <Box
         style={{ backgroundColor: bgColor, width: '100%', height: '200px', }}
         sx={{

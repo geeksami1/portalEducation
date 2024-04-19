@@ -107,7 +107,7 @@ const MainRoutes = {
       path: 'dashboard',
       children: [
         {
-          path: 'chapter',
+          path: 'chapter/:id',
           element: <Chapter />
         }
       ]

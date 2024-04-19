@@ -16,17 +16,21 @@ import TimelineCard from 'ui-component/cards/TimelineCard';
 import SpanningTable from 'ui-component/table/Table';
 import HiringCard from 'ui-component/cards/HiringCard';
 import ImageSlider from 'ui-component/ImageSlider/ImageSlider';
+import { Navigate } from 'react-router';
 // import TopPeformingStudent from 'ui-component/cards/TopPeformingStudent';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
   // const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     // setLoading(false);
   }, []);
 
   return (
+    <>
+    {!user && <Navigate to="/auth/login" replace={true} />}
     <Grid container spacing={gridSpacing}>
       <Grid item xs={12}>
         <Grid container spacing={gridSpacing}>
@@ -50,13 +54,13 @@ const Dashboard = () => {
                 </Grid>
 
                 <Grid item xs={6} md={3} lg={3}>
-                  <SubjectBox img={subject2} title="Physics" bgColor="#7A3FF7" />
+                  <SubjectBox img={subject2} title="Science and Technology" bgColor="#7A3FF7" />
                 </Grid>
                 <Grid item xs={6} md={3} lg={3}>
-                  <SubjectBox img={subject3} title="English" bgColor="#D54041" />
+                  <SubjectBox img={subject3} title="Arts" bgColor="#D54041" />
                 </Grid>
                 <Grid item xs={6} md={3} lg={3}>
-                  <SubjectBox img={subject4} title="Biology" bgColor="#56CD78" />
+                  <SubjectBox img={subject4} title="Health And Physical Education" bgColor="#56CD78" />
                 </Grid>
               </Grid>
             </Grid>
@@ -223,6 +227,8 @@ const Dashboard = () => {
         </Grid>
       </Grid>
     </Grid>
+    
+    </>
   );
 };
 

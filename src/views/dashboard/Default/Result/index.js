@@ -10,7 +10,7 @@ import QuizResult from 'ui-component/cards/Result/QuizResult';
 
 import student1 from '../../../../assets/images/student1.png';
 import student2 from '../../../../assets/images/student2.png';
-import TotalGrowthBarChart from '../TotalGrowthBarChart';
+// import TotalGrowthBarChart from '../TotalGrowthBarChart';
 
 const Result = () => (
   <Grid container spacing={gridSpacing}>
@@ -27,7 +27,7 @@ const Result = () => (
         </Grid>
        
         <Grid item xs={7} md={7} lg={7}>
-            <TotalGrowthBarChart />
+            {/* <TotalGrowthBarChart /> */}
         </Grid>
       
       </Grid>

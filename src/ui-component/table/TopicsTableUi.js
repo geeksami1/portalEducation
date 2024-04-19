@@ -38,7 +38,7 @@ const TopicsTableUi = ({ data }) => {
               sx={{ my: 3, py: 3, cursor: 'pointer', transition: 'transform 0.2s ease-in-out', '&:hover': { transform: 'scale(1.01)' } }}
               style={{ backgroundColor: row.backgroundColor }}
             >
-              <Link to={`/dashboard/lesson/${row.id}`} style={{ textDecoration: 'none' }}>
+              <Link to={`/dashboard/lesson/${row.link}`} style={{ textDecoration: 'none' }}>
                 <TableCell sx={{ my: 2.5, py: 2.5 }} style={{ color: '#000' }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <img src={row.icon} alt={`tableui${index}`} style={{ width: '30px', height: '30px', objectFit: 'contain' }} />
