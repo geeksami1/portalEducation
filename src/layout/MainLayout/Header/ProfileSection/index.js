@@ -160,7 +160,7 @@ const ProfileSection = () => {
             <Paper style={{color: "black"}}>
               <ClickAwayListener onClickAway={handleClose}>
                 <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
-                  <Box sx={{ p: 2 }}>
+                  {/* <Box sx={{ p: 2 }}>
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
                         <Typography variant="h4">Welcome,</Typography>
@@ -170,7 +170,7 @@ const ProfileSection = () => {
                       </Stack>
                       <Typography variant="subtitle2">Student Dashboard</Typography>
                     </Stack>
-                    {/* <OutlinedInput
+                    <OutlinedInput
                       sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
                       id="input-search-profile"
                       value={value}
@@ -185,10 +185,10 @@ const ProfileSection = () => {
                       inputProps={{
                         'aria-label': 'weight'
                       }}
-                    /> */}
+                    />
                     <Divider />
-                  </Box>
-                  <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
+                  </Box> */}
+                  {/* <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}> */}
                     <Box sx={{ p: 2 }}>
                       {/* <UpgradePlanCard /> */}
                       {/* <Divider /> */}
@@ -301,7 +301,7 @@ const ProfileSection = () => {
                         </ListItemButton>
                       </List>
                     </Box>
-                  </PerfectScrollbar>
+                  {/* </PerfectScrollbar> */}
                 </MainCard>
               </ClickAwayListener>
             </Paper>
