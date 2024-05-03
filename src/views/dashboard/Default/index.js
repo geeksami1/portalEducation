@@ -17,9 +17,10 @@ import { grade10, grade11, grade12, grade3, grade4, grade5, grade6, grade7, grad
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const grade = JSON.parse(localStorage.getItem('user')).grade;
-  console.log(grade, 'grade');
+  const userJSON = localStorage.getItem('user');
+  const user = userJSON ? JSON.parse(userJSON) : null;
+  const grade = user ? user.grade : null;
+  // console.log(grade, 'grade');
   // const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     // setLoading(false);
@@ -64,12 +65,22 @@ const Dashboard = () => {
       break;
   }
 
+  // const [showAllSubjects, setShowAllSubjects] = useState(false);
+  // const subjectsToShow = showAllSubjects ? selectedGrade : selectedGrade.slice(0, 4);
   const [showAllSubjects, setShowAllSubjects] = useState(false);
-  const subjectsToShow = showAllSubjects ? selectedGrade : selectedGrade.slice(0, 4);
+let subjectsToShow;
+
+if (selectedGrade) {
+  subjectsToShow = showAllSubjects ? selectedGrade : selectedGrade.slice(0, 4);
+} else {
+  // If selectedGrade is null, set subjectsToShow to an empty array or handle it in another way
+  subjectsToShow = [];
+}
 
   return (
     <>
       {!user && <Navigate to="/auth/login" replace={true} />}
+      {!grade && <Navigate to="/auth/login" replace={true} />}
       <Grid container spacing={gridSpacing}>
         <Grid item xs={12}>
           <Grid container spacing={gridSpacing}>
@@ -106,7 +117,7 @@ const Dashboard = () => {
                 <Grid container spacing={2}>
                   {subjectsToShow.map((subject, index) => (
                     <Grid key={index} item xs={6} md={3} lg={3}>
-                      <SubjectBox img={subject.img} title={subject.title} bgColor={subject.bgColor} />
+                      <SubjectBox img={subject.img} title={subject.title} bgColor={subject.bgColor} link={subject.link} />
                     </Grid>
                   ))}
                 </Grid>

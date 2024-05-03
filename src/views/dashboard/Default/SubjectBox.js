@@ -2,10 +2,10 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SubjectBox = ({ img, title, bgColor }) => {
+const SubjectBox = ({ img, title, bgColor, link }) => {
   return (
     <>
-      <Link to={`/dashboard/topic/${title}`} style={{ textDecoration: 'none' }}>
+      <Link to={`/dashboard/topic/${link}`} style={{ textDecoration: 'none' }}>
         <Box
           style={{ backgroundColor: bgColor, width: '100%', height: '100%' }}
           sx={{

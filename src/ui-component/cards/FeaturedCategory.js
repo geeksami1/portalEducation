@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const FeaturedCategory = ({ img, title, bgColor }) => {
+const FeaturedCategory = ({ img, title, bgColor, link }) => {
   return (
     <>
       <Link to={`/dashboard/topic/${title}`} style={{ textDecoration: 'none' }}>
