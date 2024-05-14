@@ -8,6 +8,8 @@ import MinimalLayout from 'layout/MinimalLayout';
 const AuthLogin3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/Login3')));
 const AuthRegister3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/Register3')));
 const AuthForgotPassword3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/ForgetPassword3')));
+const AuthOTP3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/AuthOTP3')));
+const ResetPassword3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/ResetPassword3')));
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
@@ -26,6 +28,14 @@ const AuthenticationRoutes = {
     {
       path: '/auth/forgot-password',
       element: <AuthForgotPassword3 />
+    },
+    {
+      path: '/auth/otp',
+      element: <AuthOTP3 />
+    },
+    {
+      path: '/auth/reset-password',
+      element: <ResetPassword3 />
     }
   ]
 };

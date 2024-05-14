@@ -1,7 +1,4 @@
 import { useState } from 'react';
-// import { useSelector } from 'react-redux';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import {
   Box,
@@ -15,39 +12,30 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
+  MenuItem,
   OutlinedInput,
+  Select,
   Stack,
   Typography
   // useMediaQuery
 } from '@mui/material';
 
-// third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-
-// project imports
 import useScriptRef from 'hooks/useScriptRef';
 import AnimateButton from 'ui-component/extended/AnimateButton';
-
-// assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Link } from 'react-router-dom';
-
-// import Google from 'assets/images/icons/social-google.svg';
-
-// ============================|| FIREBASE - LOGIN ||============================ //
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const FirebaseLogin = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
-  // const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-  // const customization = useSelector((state) => state.customization);
+  const navigate  = useNavigate()
   const [checked, setChecked] = useState(true);
-
-  // const googleHandler = async () => {
-  //   console.error('Login');
-  // };
+  const [selectedRole, setSelectedRole] = useState('');
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
@@ -58,118 +46,106 @@ const FirebaseLogin = ({ ...others }) => {
     event.preventDefault();
   };
 
- 
-
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
-        {/* <Grid item xs={12}>
-          <AnimateButton>
-            <Button
-              disableElevation
-              fullWidth
-              onClick={googleHandler}
-              size="large"
-              variant="outlined"
-              sx={{
-                color: 'grey.700',
-                backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100]
-              }}
-            >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img src={Google} alt="google" width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }} />
-              </Box>
-              Sign in with Google
-            </Button>
-          </AnimateButton>
-        </Grid> */}
-        <Grid item xs={12}>
-          {/* <Box
-            sx={{
-              alignItems: 'center',
-              display: 'flex'
-            }}
-          >
-            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-
-            <Button
-              variant="outlined"
-              sx={{
-                cursor: 'unset',
-                m: 2,
-                py: 0.5,
-                px: 7,
-                borderColor: `${theme.palette.grey[100]} !important`,
-                color: `${theme.palette.grey[900]}!important`,
-                fontWeight: 500,
-                borderRadius: `${customization.borderRadius}px`
-              }}
-              disableRipple
-              disabled
-            >
-              OR
-            </Button>
-
-            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-          </Box> */}
-        </Grid>
-        {/* <Grid item xs={12} container alignItems="center" justifyContent="center">
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="subtitle1">Sign in to get On Board</Typography>
-          </Box>
-        </Grid> */}
+        <Grid item xs={12}></Grid>
       </Grid>
 
       <Formik
         initialValues={{
-          email: '',
+          emailaddress: '',
           password: '',
+          role: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+          emailaddress: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+          role: Yup.string().required('Role is required'),
           password: Yup.string().max(255).required('Password is required')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+          // try {
+          //   console.log(values, 'values');
+          //   if (scriptedRef.current) {
+          //     setStatus({ success: true });
+          //     setSubmitting(false);
+          //   }
+          // } catch (err) {
+          //   console.error(err);
+          //   if (scriptedRef.current) {
+          //     setStatus({ success: false });
+          //     setErrors({ submit: err.message });
+          //     setSubmitting(false);
+          //   }
+          // }
           try {
             console.log(values, 'values');
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err) {
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
+            const response = await axios.post('http://localhost:8080/api/v1/user/userLogin', values, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+    
+            const data = response.data;
+            console.log(data, 'USERSIGNUP');
+            // Save user data to local storage
+            localStorage.setItem('user', JSON.stringify(data.user));
+            localStorage.setItem('token', data.accessToken);
+    
+            // Redirect to login page
+            navigate('/');
+    
+            // Show success toast
+            toast.success(data.message || 'Logged in successfully.', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light'
+            });
+            console.log(data, 'LOGIN');
+          } catch (error) {
+            // Handle error
+            console.error('Error while logging in user:', error);
+    
+            // Show error toast
+            toast.error(error.response.data.error.message || 'Error while logging in user.', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light'
+            });
           }
         }}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
-            <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
+            <FormControl fullWidth error={Boolean(touched.emailaddress && errors.emailaddress)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-email-login"
                 type="email"
-                value={values.email}
-                name="email"
+                value={values.emailaddress}
+                name="emailaddress"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 label="Email Address "
                 inputProps={{}}
               />
-              {touched.email && errors.email && (
+              {touched.emailaddress && errors.emailaddress && (
                 <FormHelperText error id="standard-weight-helper-text-email-login">
-                  {errors.email}
+                  {errors.emailaddress}
                 </FormHelperText>
               )}
             </FormControl>
-
-            
 
             <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
               <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
@@ -202,6 +178,36 @@ const FirebaseLogin = ({ ...others }) => {
                 </FormHelperText>
               )}
             </FormControl>
+            {/* Role select field */}
+            <Grid item xs={12} sm={12}>
+              <FormControl fullWidth error={Boolean(touched.role && errors.role)} sx={{ ...theme.typography.customInput }}>
+                <InputLabel id="role-label">Select Role</InputLabel>
+                <Select
+                  labelId="role-label"
+                  id="role"
+                  name="role"
+                  label="Select Role"
+                  value={values.role}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                >
+                  <MenuItem sx={{ color: 'gray' }} value="">
+                    Select Role
+                  </MenuItem>
+                  <MenuItem sx={{ color: 'gray' }} value="student">
+                    Student
+                  </MenuItem>
+                  <MenuItem sx={{ color: 'gray' }} value="teacher">
+                    Teacher
+                  </MenuItem>
+                  <MenuItem sx={{ color: 'gray' }} value="parent">
+                    Parent
+                  </MenuItem>
+                </Select>
+                {touched.role && errors.role && <FormHelperText error>{errors.role}</FormHelperText>}
+              </FormControl>
+            </Grid>
+
             <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
               <FormControlLabel
                 control={

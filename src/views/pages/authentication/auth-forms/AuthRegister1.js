@@ -20,7 +20,8 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { setUser } from 'store/actions';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AuthRegister1 = () => {
   const dispatch = useDispatch();
@@ -33,15 +34,19 @@ const AuthRegister1 = () => {
   const formik = useFormik({
     initialValues: {
       fullname: '',
-      email: '',
+      emailaddress: '',
+      username: '',
       password: '',
+      fulladdress: '',
       confirmPassword: '',
       role: '',
       grade: ''
     },
     validationSchema: Yup.object({
       fullname: Yup.string().required('Full name is required'),
-      email: Yup.string().email('Invalid email address').required('Email is required'),
+      emailaddress: Yup.string().email('Invalid email address').required('Email is required'),
+      username: Yup.string().required('Username is required'),
+      fulladdress: Yup.string().required(' Address is required'),
       password: Yup.string().required('Password is required'),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -55,27 +60,70 @@ const AuthRegister1 = () => {
         return true; // Return true for other roles where grade is not required
       })
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log('Submitted values:', values);
-      localStorage.setItem('user', JSON.stringify(values));
-      dispatch(setUser(values));
-      //   CONDITIONALLY DEAL WITH THE REDIRECT IF USER ROLE IS STUDENT THEN GO TO STUDENT DASHBOARD ELSE GO TO TEACHER DASHBOARD
+
+      try {
+        const response = await axios.post('http://localhost:8080/api/v1/student/registerStudent', values, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const data = response.data;
+        console.log(data, 'USERSIGNUP');
+        // Save user data to local storage
+        // localStorage.setItem('user', JSON.stringify(values));
+
+        // Redirect to login page
+        navigate('/auth/login');
+
+        // Show success toast
+        toast.success(data.message || 'Successfully created account.', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        });
+        console.log(data, 'USERSIGNUP');
+      } catch (error) {
+        // Handle error
+        console.error('Error while creating user:', error);
+
+        // Show error toast
+        toast.error(error.response.data.data, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light'
+        });
+      }
+      // dispatch(setUser(values));
+      //   // CONDITIONALLY DEAL WITH THE REDIRECT IF USER ROLE IS STUDENT THEN GO TO STUDENT DASHBOARD ELSE GO TO TEACHER DASHBOARD
       // if (values.role === 'student') {
       //   navigate('/');
       // } else {
       //   navigate('/dashboard/teacher');
       // }
-      switch (values.role) {
-        case 'student':
-          navigate('/');
-          break;
-        case 'parent':
-          navigate('/dashboard/parent');
-          break;
-        default:
-          navigate('/dashboard/teacher');
-          break;
-      }
+      // switch (values.role) {
+      //   case 'student':
+      //     navigate('/');
+      //     break;
+      //   case 'parent':
+      //     navigate('/dashboard/parent');
+      //     break;
+      //   default:
+      //     navigate('/dashboard/teacher');
+      //     break;
+      // }
     }
   });
 
@@ -112,24 +160,46 @@ const AuthRegister1 = () => {
             )}
           </FormControl>
         </Grid>
-        {/* EMAIL FIELD  */}
+        {/*  USERNAME FIELD  */}
         <Grid item xs={12} sm={12}>
-          <FormControl fullWidth error={Boolean(formik.touched.email && formik.errors.email)}>
-            <InputLabel htmlFor="outlined-adornment-email-register">Email Address</InputLabel>
+          <FormControl fullWidth error={Boolean(formik.touched.username && formik.errors.username)}>
+            <InputLabel htmlFor="outlined-adornment-username-register">Username</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-email-register"
+              id="outlined-adornment-username-register"
               fullWidth
-              label="Email Address"
+              label="Username"
               margin="dense"
-              name="email"
+              name="username"
               type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.email}
+              value={formik.values.username}
             />
-            {formik.touched.email && formik.errors.email && (
+            {formik.touched.username && formik.errors.username && (
               <FormHelperText error id="standard-weight-helper-text--register">
-                {formik.errors.email}
+                {formik.errors.username}
+              </FormHelperText>
+            )}
+          </FormControl>
+        </Grid>
+        {/* EMAIL FIELD  */}
+        <Grid item xs={12} sm={12}>
+          <FormControl fullWidth error={Boolean(formik.touched.emailaddress && formik.errors.emailaddress)}>
+            <InputLabel htmlFor="outlined-adornment-emailaddress-register">Email Address</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-emailaddress-register"
+              fullWidth
+              label="Email Address"
+              margin="dense"
+              name="emailaddress"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.emailaddress}
+            />
+            {formik.touched.emailaddress && formik.errors.emailaddress && (
+              <FormHelperText error id="standard-weight-helper-text--register">
+                {formik.errors.emailaddress}
               </FormHelperText>
             )}
           </FormControl>
@@ -188,6 +258,28 @@ const AuthRegister1 = () => {
             {formik.touched.confirmPassword && formik.errors.confirmPassword && (
               <FormHelperText error id="standard-weight-helper-text--register">
                 {formik.errors.confirmPassword}
+              </FormHelperText>
+            )}
+          </FormControl>
+        </Grid>
+        {/*  ADDRESS FIELD  */}
+        <Grid item xs={12} sm={12}>
+          <FormControl fullWidth error={Boolean(formik.touched.fulladdress && formik.errors.fulladdress)}>
+            <InputLabel htmlFor="outlined-adornment-fulladdress-register">Address</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-fulladdress-register"
+              fullWidth
+              label="Address"
+              margin="dense"
+              name="fulladdress"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.fulladdress}
+            />
+            {formik.touched.fulladdress && formik.errors.fulladdress && (
+              <FormHelperText error id="standard-weight-helper-text--register">
+                {formik.errors.fulladdress}
               </FormHelperText>
             )}
           </FormControl>

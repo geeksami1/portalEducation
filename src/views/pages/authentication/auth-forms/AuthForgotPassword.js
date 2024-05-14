@@ -1,65 +1,79 @@
-// import { useState } from 'react';
-
 import { useTheme } from '@mui/material/styles';
-import {
-  Box,
-  Button,
-  //   Checkbox,
-  FormControl,
-  //   FormControlLabel,
-  FormHelperText,
-  InputLabel,
-  OutlinedInput
-  //   Stack,
-} from '@mui/material';
+import { Box, Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, OutlinedInput, Select } from '@mui/material';
 
-// third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-
-// project imports
 import useScriptRef from 'hooks/useScriptRef';
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
-
-  //   const [checked, setChecked] = useState(true);
+  const navigate = useNavigate();
 
   return (
     <>
-      {/* <Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid item xs={12}></Grid>
-        <Grid item xs={12} container alignItems="center" justifyContent="center">
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="subtitle1">You can reset your password here</Typography>
-          </Box>
-        </Grid>
-      </Grid> */}
-
       <Formik
         initialValues={{
           email: '',
+          role: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required')
+          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+          role: Yup.string().required('Role is required')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            console.log(values, 'forgotvalues');
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err) {
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
+            console.log(values, 'values');
+            const response = await axios.post(
+              'http://localhost:8080/api/v1/user/forgetuserPassword',
+              {
+                emailaddress: values.email,
+                role: values.role
+              },
+              {
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              }
+            );
+
+            const data = response.data;
+
+            // Redirect to login page
+            navigate('/auth/otp');
+
+            // Show success toast
+            toast.success(data.message || 'OTP sent successfully.', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light'
+            });
+            console.log(data, 'SENDOTP');
+          } catch (error) {
+            // Handle error
+            console.error('Error while logging in user:', error);
+
+            // Show error toast
+            toast.error(error.response.data.error.message || 'Error while logging in user.', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light'
+            });
           }
         }}
       >
@@ -83,11 +97,39 @@ const ForgotPassword = ({ ...others }) => {
                 </FormHelperText>
               )}
             </FormControl>
-
+            {/* ROLE FIELD  */}
+            <Grid item xs={12} sm={12}>
+              <FormControl fullWidth error={Boolean(touched.role && errors.role)}>
+                <InputLabel id="role-label">Select Role</InputLabel>
+                <Select
+                  labelId="role-label"
+                  id="role"
+                  name="role"
+                  label="Select Role"
+                  value={values.role}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                >
+                  <MenuItem sx={{ color: 'gray' }} value="">
+                    Select Role
+                  </MenuItem>
+                  <MenuItem sx={{ color: 'gray' }} value="student">
+                    Student
+                  </MenuItem>
+                  <MenuItem sx={{ color: 'gray' }} value="teacher">
+                    Teacher
+                  </MenuItem>
+                  <MenuItem sx={{ color: 'gray' }} value="parent">
+                    Parent
+                  </MenuItem>
+                </Select>
+                {touched.role && errors.role && <FormHelperText error>{errors.role}</FormHelperText>}
+              </FormControl>
+            </Grid>
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
-                  Send
+                  Send OTP
                 </Button>
               </AnimateButton>
             </Box>

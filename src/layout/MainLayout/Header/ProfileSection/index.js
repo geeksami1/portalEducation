@@ -60,7 +60,7 @@ const ProfileSection = () => {
   const anchorRef = useRef(null);
   const handleLogout = async () => {
     console.log('Logout');
-    dispatch(clearUser())
+    
     localStorage.clear();
     navigate('/auth/login', { replace: true });
   };
