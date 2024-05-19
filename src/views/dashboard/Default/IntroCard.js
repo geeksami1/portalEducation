@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import introCardImg1 from '../../../../src/assets/images/introcard1.png';
 import alert from '../../../../src/assets/images/alert.png';
+import { capitalizeFirstLetter } from 'views/utilities/Capitilize';
 
 const IntroCard = () => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -13,7 +14,7 @@ const IntroCard = () => {
           {/* First section */}
           <Box sx={{ p: 3 }}>
             <Typography variant="h5" sx={{ fontWeight: 700, fontSize: 35 }}>
-            Hi, {fullName ? fullName : 'Guest'}!
+            Hi, {fullName ? capitalizeFirstLetter(fullName) : 'Guest'}!
             </Typography>
             <Typography variant="h5" sx={{ fontWeight: 200, mt: 2, fontSize: 16 }}>
               Welcome to the student portal. we always appreciate you to stay connected and stay updated on Student portal

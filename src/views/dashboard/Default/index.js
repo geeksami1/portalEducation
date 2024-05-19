@@ -11,76 +11,49 @@ import TimelineCard from 'ui-component/cards/TimelineCard';
 import SpanningTable from 'ui-component/table/Table';
 import HiringCard from 'ui-component/cards/HiringCard';
 import ImageSlider from 'ui-component/ImageSlider/ImageSlider';
-import { Navigate } from 'react-router';
-import { grade10, grade11, grade12, grade3, grade4, grade5, grade6, grade7, grade8, grade9 } from 'utils/subjectData';
-
+import axios from 'axios';
+import subject4 from '../../../assets/images/subject4.png';
+import { Link } from 'react-router-dom';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
-  const userJSON = localStorage.getItem('user');
-  const user = userJSON ? JSON.parse(userJSON) : null;
-  const grade = user ? user.grade : null;
-  // console.log(grade, 'grade');
-  // const [isLoading, setLoading] = useState(true);
+  const [subjects, setSubjects] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [topic, setTopic] = useState([]);
+  console.log('🚀 ~ Dashboard ~ topic:', topic);
+  const studentId = '6648e98bee11ba4bbe139c47';
+  const getAllCourses = async () => {
+    try {
+      const response = await axios.post(`http://localhost:8080/api/v1/student/getall-mycourses/6648e903ee11ba4bbe139c28`, {
+        studentId: studentId
+      });
+      const data = response.data;
+      setSubjects(data?.gradeSubjects);
+    } catch (error) {
+      console.log('🚀 ~ getAllCourses ~ error:', error);
+    }
+  };
+
+  const getAllTopics = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/v1/curriculum/get-alltopics-ofsubject/6649003878af9acfcf1a6e81`);
+      const data = response.data;
+      setTopic(data?.data);
+    } catch (error) {
+      console.log('🚀 ~ getAllCourses ~ error:', error);
+    }
+  };
+
   useEffect(() => {
-    // setLoading(false);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    getAllCourses();
+    getAllTopics();
   }, []);
-
-  let selectedGrade;
-
-  switch (grade) {
-    case 'grade3':
-      selectedGrade = grade3;
-      break;
-    case 'grade4':
-      selectedGrade = grade4;
-      break;
-    case 'grade5':
-      selectedGrade = grade5;
-      break;
-    case 'grade6':
-      selectedGrade = grade6;
-      break;
-    case 'grade7':
-      selectedGrade = grade7;
-      break;
-    case 'grade8':
-      selectedGrade = grade8;
-      break;
-    case 'grade9':
-      selectedGrade = grade9;
-      break;
-    case 'grade10':
-      selectedGrade = grade10;
-      break;
-    case 'grade11':
-      selectedGrade = grade11;
-      break;
-    case 'grade12':
-      selectedGrade = grade12;
-      break;
-
-    default:
-      selectedGrade = null;
-      break;
-  }
-
-  // const [showAllSubjects, setShowAllSubjects] = useState(false);
-  // const subjectsToShow = showAllSubjects ? selectedGrade : selectedGrade.slice(0, 4);
-  const [showAllSubjects, setShowAllSubjects] = useState(false);
-let subjectsToShow;
-
-if (selectedGrade) {
-  subjectsToShow = showAllSubjects ? selectedGrade : selectedGrade.slice(0, 4);
-} else {
-  // If selectedGrade is null, set subjectsToShow to an empty array or handle it in another way
-  subjectsToShow = [];
-}
 
   return (
     <>
-      {!user && <Navigate to="/auth/login" replace={true} />}
-      {!grade && <Navigate to="/auth/login" replace={true} />}
+      {/* {!user && <Navigate to="/auth/login" replace={true} />}
+      {!grade && <Navigate to="/auth/login" replace={true} />} */}
       <Grid container spacing={gridSpacing}>
         <Grid item xs={12}>
           <Grid container spacing={gridSpacing}>
@@ -92,32 +65,33 @@ if (selectedGrade) {
               <Grid item xs={12} mt={6}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Typography variant="h2" my={4} sx={{ color: '#00000082' }}>
-                    Subjects <span style={{ fontSize: 10, color: '#00000082' }}>({grade})</span>{' '}
+                    Subjects <span style={{ fontSize: 10, color: '#00000082' }}>({subjects?.length})</span>{' '}
                   </Typography>
                   <Box>
-                    <Button
-                      onClick={() => setShowAllSubjects(!showAllSubjects)}
-                      variant="outlined"
-                      color="primary"
-                      size="small"
-                      sx={{
-                        backgroundColor: 'transparent',
-                        border: '1px solid #0000008C',
-                        color: '#0000008C',
-                        '&:hover': {
-                          backgroundColor: '#0000008C',
-                          color: '#fff'
-                        }
-                      }}
-                    >
-                      {showAllSubjects ? 'See Less' : 'See All'}
-                    </Button>
+                    <Link to="/dashboard/subject" style={{ textDecoration: 'none' }}>
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        size="small"
+                        sx={{
+                          backgroundColor: 'transparent',
+                          border: '1px solid #0000008C',
+                          color: '#0000008C',
+                          '&:hover': {
+                            backgroundColor: '#0000008C',
+                            color: '#fff'
+                          }
+                        }}
+                      >
+                        See All
+                      </Button>
+                    </Link>
                   </Box>
                 </Box>
                 <Grid container spacing={2}>
-                  {subjectsToShow.map((subject, index) => (
+                  {subjects?.map((subject, index) => (
                     <Grid key={index} item xs={6} md={3} lg={3}>
-                      <SubjectBox img={subject.img} title={subject.title} bgColor={subject.bgColor} link={subject.link} />
+                      <SubjectBox  img={subject4} title={subject.subjectname} bgColor={'#D54041'} id={subject._id} />
                     </Grid>
                   ))}
                 </Grid>

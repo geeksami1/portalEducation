@@ -8,11 +8,7 @@ import { gridSpacing } from 'store/constant';
 import lesson2 from '../../../../assets/images/lesson2.png';
 import { useParams } from 'react-router-dom';
 
-//IMPORT LESSONS PICTURES
-// import lessonicon01 from '../../../../assets/images/emotion.jpeg';
-// import lessonicon02 from '../../../../assets/images/lessonicon02.png';
-// import lessonicon03 from '../../../../assets/images/lessonicon03.png';
-// import lessonicon04 from '../../../../assets/images/lessonicon04.png';
+
 import {
   ArstLesson1,
   ArstLesson2,
@@ -34,60 +30,31 @@ import {
   mathematicLesson4,
   mathematicLesson5
 } from 'utils/lessonData';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 const Lesson = () => {
   const { id } = useParams();
-
+  const [lessons, setLessons] = useState([]);
   console.log(id);
 
-  const getColorForLesson = (lessonName) => {
-    const lesson = selectedLessonData.find((lesson) => lesson.name === lessonName);
-    return lesson ? lesson.color : '#000000';
+
+  const getLessonsOfTopicsByID = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/v1/curriculum/get-all-lessonsof-topic/${id}`);
+      const data = response.data;
+      console.log("🚀 ~ getLessonsOfTopicsByID ~ data:", data)
+      // setTopic(data?.data);
+      setLessons(data?.data);
+    } catch (error) {
+      console.log('🚀 ~ getTopicsOfSubjectByID ~ error:', error);
+    }
   };
 
-  const selectedLessonData = (() => {
-    switch (id) {
-      case 'mathematics-sel':
-        return MathematicLesson1;
-      case 'mathematics-number':
-        return MathematicLesson2;
-      case 'mathematics-pattern':
-        return MathematicLesson3;
-      case 'mathematics-data':
-        return mathematicLesson4;
-      case 'mathematics-spatial':
-        return mathematicLesson5;
-      case 'mathematics-financial':
-        return MathematicLesson6;
-      case 'science-stem':
-        return ScienceLesson1;
-      case 'science-life':
-        return ScienceLesson2;
-      case 'science-matter':
-        return ScienceLesson3;
-      case 'science-structure':
-        return ScienceLesson4;
-      case 'science-geography':
-        return ScienceLesson5;
-      case 'arts-dance':
-        return ArstLesson1;
-      case 'arts-drama':
-        return ArstLesson2;
-      case 'arts-music':
-        return ArstLesson3;
-      case 'arts-visual':
-        return ArstLesson4;
-      case 'health-social-emotional':
-        return HealthLesson1;
-      case 'health-active-living':
-        return HealthLesson2;
-      case 'health-movement':
-        return HealthLesson3;
-      case 'health-healthy-living':
-        return HealthLesson4;
-      default:
-        return [];
-    }
-  })();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    getLessonsOfTopicsByID();
+  }, []);
+
 
   return (
     <>
@@ -98,12 +65,12 @@ const Lesson = () => {
             Choose Lesson
           </Typography>
           <Grid container spacing={gridSpacing}>
-            {selectedLessonData.map((lesson, index) => (
+            {lessons && lessons.map((lesson, index) => (
               <Grid key={index} item xs={3} md={3} lg={3}>
-                <LessonCards img={lesson.icon} title={lesson.name} bgColor={getColorForLesson(lesson.name)} />
+                <LessonCards id={lesson._id} lessonName={lesson.lessonName} />
               </Grid>
             ))}
-          </Grid>
+          </Grid> 
         </Grid>
         {/*  CHOOSE LESSON END  */}
         {/*  All ABOUT START  */}

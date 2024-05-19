@@ -43,7 +43,7 @@ const ForgotPassword = ({ ...others }) => {
             );
 
             const data = response.data;
-
+            localStorage.setItem('forget', JSON.stringify(values));
             // Redirect to login page
             navigate('/auth/otp');
 
@@ -64,7 +64,7 @@ const ForgotPassword = ({ ...others }) => {
             console.error('Error while logging in user:', error);
 
             // Show error toast
-            toast.error(error.response.data.error.message || 'Error while logging in user.', {
+            toast.error(error.response.data.data || 'Error while logging in user.', {
               position: 'top-right',
               autoClose: 5000,
               hideProgressBar: false,

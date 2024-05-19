@@ -7,13 +7,20 @@ import { Formik } from 'formik';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const OTP = ({ ...others }) => {
     const theme = useTheme();
+    const forget = localStorage.getItem('forget');
+    const  navigate = useNavigate();
+   
+    const role = forget ? JSON.parse(forget).role : '';
+    const email = forget ? JSON.parse(forget).email : '';
     return (
         <>
             <Formik
                 initialValues={{
+
                     otp: '',
                     submit: null
                 }}
@@ -22,10 +29,14 @@ const OTP = ({ ...others }) => {
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
-                        console.log(values, 'values');
-                        const response = await axios.post('http://localhost:8080/api/v1/user/VerifyOtp', {
+             
+                        const formValues = {
+                            emailaddress: email,
+                            role: role,
                             otp: values.otp
-                        }, {
+                        }
+                        console.log("🚀 ~ onSubmit={ ~ formValues:", formValues)
+                        const response = await axios.post(`http://localhost:8080/api/v1/user/VerifyOtp`, formValues, {
                             headers: {
                                 'Content-Type': 'application/json'
                             }
@@ -36,10 +47,10 @@ const OTP = ({ ...others }) => {
                         // Save user data to local storage
 
                         // Redirect to login page
-                        // navigate('/reset-password');
+                        navigate('/auth/reset-password');
 
                         // Show success toast
-                        toast.success(data.message || 'OTP verified successfully.', {
+                        toast.success(data.data || 'OTP verified successfully.', {
                             position: 'top-right',
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -55,7 +66,7 @@ const OTP = ({ ...others }) => {
                         console.error('Error while verifying OTP:', error);
 
                         // Show error toast
-                        toast.error(error.response.data.error.message || 'Error while Verifying OTP', {
+                        toast.error(error.response?.data?.data || 'Error while Verifying OTP', {
                             position: 'top-right',
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -74,7 +85,7 @@ const OTP = ({ ...others }) => {
                             <InputLabel htmlFor="outlined-adornment-otp-login">Enter Your OTP</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-otp-login"
-                                type="text"
+                                type="number"
                                 value={values.otp}
                                 name="otp"
                                 onBlur={handleBlur}

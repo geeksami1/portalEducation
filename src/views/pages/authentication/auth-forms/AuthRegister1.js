@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -31,6 +31,30 @@ const AuthRegister1 = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+  const [AllGrades, setAllGrades] = useState([]);
+
+  const fetchAllGrades = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/v1/grade/all-grades');
+      const data = response.data;
+      setAllGrades(data?.allgrades);
+    } catch (error) {
+      console.error('Error while retrieving user:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllGrades();
+  }, []);
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleToggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   const formik = useFormik({
     initialValues: {
       fullname: '',
@@ -64,7 +88,18 @@ const AuthRegister1 = () => {
       console.log('Submitted values:', values);
 
       try {
-        const response = await axios.post('http://localhost:8080/api/v1/student/registerStudent', values, {
+        switch (values.role) {
+          case 'student':
+            navigate('/');
+            break;
+          case 'parent':
+            navigate('/dashboard/parent');
+            break;
+          default:
+            navigate('/dashboard/teacher');
+            break;
+        }
+        const response = await axios.post(`http://localhost:8080/api/v1/student/registerStudent/${values.grade}`, values, {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -106,35 +141,13 @@ const AuthRegister1 = () => {
           theme: 'light'
         });
       }
-      // dispatch(setUser(values));
       //   // CONDITIONALLY DEAL WITH THE REDIRECT IF USER ROLE IS STUDENT THEN GO TO STUDENT DASHBOARD ELSE GO TO TEACHER DASHBOARD
-      // if (values.role === 'student') {
-      //   navigate('/');
-      // } else {
-      //   navigate('/dashboard/teacher');
-      // }
-      // switch (values.role) {
-      //   case 'student':
-      //     navigate('/');
-      //     break;
-      //   case 'parent':
-      //     navigate('/dashboard/parent');
-      //     break;
-      //   default:
-      //     navigate('/dashboard/teacher');
-      //     break;
-      // }
+     
+     
     }
   });
 
-  const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleToggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
-
+  
   return (
     <form onSubmit={formik.handleSubmit}>
       <Grid container spacing={matchDownSM ? 0 : 2}>
@@ -331,14 +344,19 @@ const AuthRegister1 = () => {
                 <MenuItem sx={{ color: 'gray' }} value="">
                   Select Grade
                 </MenuItem>
-                {Array.from({ length: 10 }, (_, index) => {
+                {/* {Array.from({ length: 10 }, (_, index) => {
                   const gradeValue = `grade${index + 3}`; // Grade values from 3 to 12
                   return (
                     <MenuItem key={gradeValue} sx={{ color: 'gray' }} value={gradeValue}>
                       Grade {index + 3}
                     </MenuItem>
                   );
-                })}
+                })} */}
+                {AllGrades?.map((grade) => (
+                  <MenuItem key={grade} sx={{ color: 'gray' }} value={grade?._id}>
+                    {grade?.gradeNumber}
+                  </MenuItem>
+                ))}
               </Select>
               {formik.touched.grade && formik.errors.grade && <FormHelperText error>{formik.errors.grade}</FormHelperText>}
             </FormControl>

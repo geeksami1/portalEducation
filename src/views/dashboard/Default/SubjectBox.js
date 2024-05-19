@@ -1,11 +1,12 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { capitalizeFirstLetter } from 'views/utilities/Capitilize';
 
-const SubjectBox = ({ img, title, bgColor, link }) => {
+const SubjectBox = ({ img, title, bgColor, id }) => {
   return (
     <>
-      <Link to={`/dashboard/topic/${link}`} style={{ textDecoration: 'none' }}>
+      <Link to={`/dashboard/topic/${id}`} style={{ textDecoration: 'none' }}>
         <Box
           style={{ backgroundColor: bgColor, width: '100%', height: '100%' }}
           sx={{
@@ -22,7 +23,7 @@ const SubjectBox = ({ img, title, bgColor, link }) => {
         >
           <img src={img} alt="subject1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           <Typography variant="h5" sx={{ color: '#fff', mt: 2 }}>
-            {title}
+            {capitalizeFirstLetter(title)}
           </Typography>
         </Box>
       </Link>

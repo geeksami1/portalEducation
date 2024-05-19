@@ -15,11 +15,13 @@ const ResetPassword = ({ ...others }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
+  const forget = localStorage.getItem('forget');
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const role = forget ? JSON.parse(forget).role : '';
+  const email = forget ? JSON.parse(forget).email : '';
   return (
     <>
       <Formik
@@ -36,6 +38,8 @@ const ResetPassword = ({ ...others }) => {
             const response = await axios.post(
               'http://localhost:8080/api/v1/user/resetpassword',
               {
+                emailaddress: email,
+                role: role,
                 newpassword: values.newpassword
               },
               {
@@ -49,6 +53,7 @@ const ResetPassword = ({ ...others }) => {
 
             // Redirect to login page
             navigate('/auth/login');
+
 
             // Show success toast
             toast.success(data.message || 'Reset password successfully.', {
@@ -77,6 +82,8 @@ const ResetPassword = ({ ...others }) => {
               progress: undefined,
               theme: 'light'
             });
+          } finally {
+            localStorage.removeItem('forget');
           }
         }}
       >
