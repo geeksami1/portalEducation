@@ -13,43 +13,51 @@ import HiringCard from 'ui-component/cards/HiringCard';
 import ImageSlider from 'ui-component/ImageSlider/ImageSlider';
 import axios from 'axios';
 import subject4 from '../../../assets/images/subject4.png';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
   const [subjects, setSubjects] = useState([]);
-  const user = JSON.parse(localStorage.getItem('user'));
   const [topic, setTopic] = useState([]);
-  console.log('🚀 ~ Dashboard ~ topic:', topic);
-  const studentId = '6648e98bee11ba4bbe139c47';
-  const getAllCourses = async () => {
-    try {
-      const response = await axios.post(`http://localhost:8080/api/v1/student/getall-mycourses/6648e903ee11ba4bbe139c28`, {
-        studentId: studentId
-      });
-      const data = response.data;
-      setSubjects(data?.gradeSubjects);
-    } catch (error) {
-      console.log('🚀 ~ getAllCourses ~ error:', error);
-    }
-  };
 
-  const getAllTopics = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8080/api/v1/curriculum/get-alltopics-ofsubject/6649003878af9acfcf1a6e81`);
-      const data = response.data;
-      setTopic(data?.data);
-    } catch (error) {
-      console.log('🚀 ~ getAllCourses ~ error:', error);
-    }
-  };
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    getAllCourses();
-    getAllTopics();
+    if (user) {
+      const studentId = user._id;
+      const gradeId = user.gradeId;
+
+      const getAllCourses = async () => {
+        try {
+          const response = await axios.post(`http://localhost:8080/api/v1/student/getall-mycourses/${gradeId}`, {
+            studentId: studentId
+          });
+          const data = response.data;
+          setSubjects(data?.gradeSubjects);
+        } catch (error) {
+          console.log('🚀 ~ getAllCourses ~ error:', error);
+        }
+      };
+
+      // const getAllTopics = async () => {
+      //   try {
+      //     const response = await axios.get(`http://localhost:8080/api/v1/curriculum/get-alltopics-ofsubject/6649003878af9acfcf1a6e81`);
+      //     const data = response.data;
+      //     setTopic(data?.data);
+      //   } catch (error) {
+      //     console.log('🚀 ~ getAllCourses ~ error:', error);
+      //   }
+      // };
+
+      getAllCourses();
+      // getAllTopics();
+    }
+
   }, []);
 
+  if (!user) {
+    return <Navigate to="/auth/login" replace={true} />;
+  }
   return (
     <>
       {/* {!user && <Navigate to="/auth/login" replace={true} />}

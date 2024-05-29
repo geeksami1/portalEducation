@@ -78,42 +78,75 @@ const AuthRegister1 = () => {
       role: Yup.string().required('Role is required'),
       grade: Yup.string().test('conditionalGrade', 'Grade is required for student or parent', function (value) {
         const role = this.parent.role;
-        if (['student', 'parent'].includes(role)) {
+        if (['student'].includes(role)) {
           return !!value; // Return true if grade is provided, false otherwise
         }
         return true; // Return true for other roles where grade is not required
       })
     }),
     onSubmit: async (values) => {
-      console.log('Submitted values:', values);
+      console.log(values);
 
+      const studentData = {
+        fullname: values.fullname,
+        emailaddress: values.emailaddress,
+        username: values.username,
+        password: values.password,
+        fulladdress: values.fulladdress,
+        confirmPassword: values.confirmPassword,
+        role: values.role,
+        grade: values.grade,
+      }
+      const teacherData = {
+        fullname: values.fullname,
+        emailaddress: values.emailaddress,
+        username: values.username,
+        password: values.password,
+        fulladdress: values.fulladdress,
+        confirmPassword: values.confirmPassword,
+        role: values.role
+      }
+      const parentData = {
+        fullname: values.fullname,
+        emailaddress: values.emailaddress,
+        username: values.username,
+        password: values.password,
+        fulladdress: values.fulladdress,
+        confirmPassword: values.confirmPassword,
+        role: values.role,
+        childrollno: values.childrollno
+      }
       try {
+        let user;
         switch (values.role) {
           case 'student':
-            navigate('/');
+            user = await axios.post('http://localhost:8080/api/v1/student/registerStudent/${values.grade}', studentData, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+            break;
+          case 'teacher':
+            user = await axios.post('http://localhost:8080/api/v1/teacher/register-teacher', teacherData, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
             break;
           case 'parent':
-            navigate('/dashboard/parent');
+            user = await axios.post('http://localhost:8080/api/v1/parent/registerParent', parentData, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
             break;
           default:
-            navigate('/dashboard/teacher');
             break;
         }
-        const response = await axios.post(`http://localhost:8080/api/v1/student/registerStudent/${values.grade}`, values, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-
-        const data = response.data;
-        console.log(data, 'USERSIGNUP');
-        // Save user data to local storage
-        // localStorage.setItem('user', JSON.stringify(values));
-
-        // Redirect to login page
+         console.log(user);
+        const data = user.data;
         navigate('/auth/login');
-
-        // Show success toast
+         console.log(user);
         toast.success(data.message || 'Successfully created account.', {
           position: 'top-right',
           autoClose: 5000,
@@ -124,12 +157,7 @@ const AuthRegister1 = () => {
           progress: undefined,
           theme: 'light'
         });
-        console.log(data, 'USERSIGNUP');
       } catch (error) {
-        // Handle error
-        console.error('Error while creating user:', error);
-
-        // Show error toast
         toast.error(error.response.data.data, {
           position: 'top-right',
           autoClose: 5000,
@@ -141,9 +169,6 @@ const AuthRegister1 = () => {
           theme: 'light'
         });
       }
-      //   // CONDITIONALLY DEAL WITH THE REDIRECT IF USER ROLE IS STUDENT THEN GO TO STUDENT DASHBOARD ELSE GO TO TEACHER DASHBOARD
-     
-     
     }
   });
 

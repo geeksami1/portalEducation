@@ -6,6 +6,7 @@ import MinimalLayout from 'layout/MinimalLayout';
 
 // login option 3 routing
 const AuthLogin3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/Login3')));
+const AuthAdminLogin3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/AuthAdminLogin3')));
 const AuthRegister3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/Register3')));
 const AuthForgotPassword3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/ForgetPassword3')));
 const AuthOTP3 = Loadable(lazy(() => import('views/pages/authentication/authentication3/AuthOTP3')));
@@ -36,6 +37,12 @@ const AuthenticationRoutes = {
     {
       path: '/auth/reset-password',
       element: <ResetPassword3 />
+    },
+
+    //FOR ADMIN
+    {
+      path: '/auth/admin/login',
+      element: <AuthAdminLogin3 />
     }
   ]
 };
